@@ -21,7 +21,7 @@ author: Hanxi Xiao
 
 navbar-links:
   About Me: "aboutme"
-  Publications: "publications"
+  Publications: "Publications"
   Resources:
     - Beautiful Jekyll: "https://beautifuljekyll.com"
     - Learn markdown: "https://www.markdowntutorial.com/"
