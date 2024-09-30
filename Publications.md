@@ -6,7 +6,6 @@ title: Publications & Projects
 **Highlighted Publications and Projects**
 
 
-
 **2024**
 
 - **Deep humoral profiling coupled to interpretable machine learning unveils diagnostic markers and pathophysiology of schistosomiasis**  
