@@ -8,33 +8,31 @@ check check
 
 **2024**
 
-- **ConEC: Earnings Call Dataset with Real-world Contexts for Benchmarking Contextual Speech Recognition**  
-  Ruizhe Huang, Mahsa Yarmohammadi, Jan Trmal, Jing Liu, **Desh Raj**, Leibny Paola Garcia, Alexei V Ivanov, Patrick Ehlen, Mingzhi Yu, Dan Povey, Sanjeev Khudanpur  
-  *LREC 2024*  
-  [Paper](https://aclanthology.org/2024.lrec-main.328/){: .btn} 
+- **Deep humoral profiling coupled to interpretable machine learning unveils diagnostic markers and pathophysiology of schistosomiasis**
+	Anushka Saha, Trirupa Chakraborty, Javad Rahimikollu, *Hanxi Xiao*,  et al <br>
+  *Science Translational Medicine*
+  [Paper](https://www.science.org/doi/10.1126/scitranslmed.adk7832){: .btn} 
 
-- **Listening to multi-talker conversations: Modular and end-to-end perspectives**  
-  **Desh Raj**  
-  *PhD Thesis, Johns Hopkins University*  
-  [Thesis](https://arxiv.org/abs/2402.08932){: .btn} 
-  [Slides](/static/ppt/thesis_defense.pdf){: .btn} 
-  [Video](https://www.youtube.com/watch?v=iKnCUHIgG7A){: .btn}  
+- **Aberrant mitochondrial DNA synthesis in macrophages exacerbates inflammation and atherosclerosis**
+	Niranjana Natarajan, Jonathan Florentin, Ebin Johny, *Hanxi Xiao*,  et al <br>
+  *Nature Communications*
+  [Paper](https://www.nature.com/articles/s41467-024-51780-1){: .btn} 
 
-- **On speaker attribution with SURT**  
-  **Desh Raj**, Matthew Wiesner, Matthew Maciejewski, Paola Garcia, Daniel Povey, Sanjeev Khudanpur  
-  *Speaker Odyssey 2024*  
-  [Paper](https://arxiv.org/abs/2401.15676){: .btn}
-  [Slides](/static/ppt/odyssey24_surt.pdf){: .btn} 
 
-- **Updated corpora and benchmarks for long-form speech recognition**  
-  Jennifer Drexler Fox, **Desh Raj**, Natalie Delworth, Quinn McNamara, Corey Miller, Migüel Jetté  
-  *IEEE ICASSP 2024*  
-  [Paper](https://arxiv.org/abs/2309.15013){: .btn}
-  [Code](https://github.com/revdotcom/speech-datasets){: .btn} 
+- **Regulatory T Cell Insufficiency in Autoimmune Diabetes Is Driven by Selective Loss of Neuropilin-1 on Intraislet Regulatory T Cells**
+Stephanie Grebinoski, Gwenyth Pieklo, Qianxia Zhang, Anabelle Visperas, Jian Cui, Jordana Goulet, *Hanxi Xiao*, et al <br>   
+*Nature Communications*
+[Paper](https://journals.aai.org/jimmunol/article/213/6/779/267054/Regulatory-T-Cell-Insufficiency-in-Autoimmune){: .btn} 
 
-- **Training Early-Exit Architectures for Automatic Speech Recognition: Fine-Tuning Pre-Trained Models or Training from Scratch**  
-  George August Wright, Umberto Cappellazzo, Salah Zaiem, **Desh Raj**, Lucas Ondel Yang, Daniele Falavigna, Alessio Brutti  
-  *IEEE ICASSP 2024 Workshop on Self-supervision in Audio, Speech, and Beyond (SASB)*  
-  [Paper](https://aps.arxiv.org/abs/2309.09546){: .btn} 
 
+- **SLIDE: Significant Latent Factor Interaction Discovery and Exploration across biological domains** 
+	Javad Rahimikollu ^, *Hanxi Xiao* ^,  et al <br>
+  *Nature Method*, ^ represent equal contribution <br>
+  [Paper](https://www.nature.com/articles/s41592-024-02175-z)
+
+**2023**
+- **From bench to bedside via bytes: Multi-omic immunoprofiling and integration using machine learning and network approaches** 
+	*Hanxi Xiao*, et al <br>
+  *Human Vaccines & Immunotherapeutics*, <br>
+  [Paper](https://www.tandfonline.com/doi/full/10.1080/21645515.2023.2282803)
 
