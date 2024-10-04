@@ -11,18 +11,18 @@ check check
 - **Deep humoral profiling coupled to interpretable machine learning unveils diagnostic markers and pathophysiology of schistosomiasis** <br>
 	Anushka Saha, Trirupa Chakraborty, Javad Rahimikollu, **Hanxi Xiao**,  et al <br>
   *Science Translational Medicine* <br>
-  [Link to Paper](https://www.science.org/doi/10.1126/scitranslmed.adk7832){: .btn} 
+  [Link to Paper](https://www.science.org/doi/10.1126/scitranslmed.adk7832)
 
 - **Aberrant mitochondrial DNA synthesis in macrophages exacerbates inflammation and atherosclerosis** <br>
 	Niranjana Natarajan, Jonathan Florentin, Ebin Johny, **Hanxi Xiao**,  et al <br>
   *Nature Communications* <br>
-  [Link to Paper](https://www.nature.com/articles/s41467-024-51780-1){: .btn} 
+  [Link to Paper](https://www.nature.com/articles/s41467-024-51780-1)
 
 
 - **Regulatory T Cell Insufficiency in Autoimmune Diabetes Is Driven by Selective Loss of Neuropilin-1 on Intraislet Regulatory T Cells** <br>
   Stephanie Grebinoski, Gwenyth Pieklo, Qianxia Zhang, Anabelle Visperas, Jian Cui, Jordana Goulet, **Hanxi Xiao**, et al <br>   
   *Nature Communications* <br>
-  [Link to Paper](https://journals.aai.org/jimmunol/article/213/6/779/267054/Regulatory-T-Cell-Insufficiency-in-Autoimmune){: .btn} 
+  [Link to Paper](https://journals.aai.org/jimmunol/article/213/6/779/267054/Regulatory-T-Cell-Insufficiency-in-Autoimmune)
 
 
 - **SLIDE: Significant Latent Factor Interaction Discovery and Exploration across biological domains** <br>
