@@ -5,7 +5,7 @@ title: Publications & Projects
 **2024**
 - **Spatial microniches of IL-2 combine with IL-10 to drive lung migratory TH2 cells in response to inhaled allergen** <br>
 	K He, **H Xiao**,  et al <br>
-  *Nature Immunology*,
+  *Nature Immunology* <br>
   [Link to Paper](https://www.nature.com/articles/s41590-024-01986-8)
   
 
