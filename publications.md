@@ -10,8 +10,8 @@ title: Publications & Projects
   
 
 - **Interpretable machine learning uncovers epithelial transcriptional rewiring and a role for Gelsolin in COPD** <br>
-	J Su <sup>*</sup>, **H Xiao** <sup>*</sup>,  et al <br>
-  *JCI Insight*, <sup>*</sup> represent equal contribution <br>
+  J Su<sup>*</sup>, <strong>H Xiao</strong><sup>*</sup>, et al<br>
+  <em>JCI Insight</em>, <sup>*</sup> represent equal contribution
   [Link to Paper](https://insight.jci.org/articles/view/180239)
 
 - **Deep humoral profiling coupled to interpretable machine learning unveils diagnostic markers and pathophysiology of schistosomiasis** <br>
@@ -32,8 +32,8 @@ title: Publications & Projects
 
 
 - **SLIDE: Significant Latent Factor Interaction Discovery and Exploration across biological domains** <br>
-	J Rahimikollu <sup>*</sup>, **H Xiao** <sup>*</sup>,  et al <br>
-  *Nature Method*, <sup>*</sup> represent equal contribution <br>
+	J Rahimikollu <sup>*</sup>, <strong>H Xiao</strong><sup>*</sup>,  et al <br>
+  <em>Nature Method</em>, <sup>*</sup> represent equal contribution <br>
   [Link to Paper](https://www.nature.com/articles/s41592-024-02175-z)
 
 **2023**
