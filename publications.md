@@ -11,7 +11,7 @@ title: Publications & Projects
 
 - **Interpretable machine learning uncovers epithelial transcriptional rewiring and a role for Gelsolin in COPD** <br>
   J Su<sup>*</sup>, <strong>H Xiao</strong><sup>*</sup>, et al<br>
-  <em>JCI Insight</em>, <sup>*</sup> represent equal contribution
+  <em>JCI Insight</em>, <sup>*</sup> represent equal contribution <br>
   [Link to Paper](https://insight.jci.org/articles/view/180239)
 
 - **Deep humoral profiling coupled to interpretable machine learning unveils diagnostic markers and pathophysiology of schistosomiasis** <br>
