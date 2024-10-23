@@ -37,6 +37,11 @@ title: Publications & Projects
   [Link to Paper](https://www.nature.com/articles/s41592-024-02175-z)
 
 **2023**
+- **Contextualized Networks Reveal Heterogeneous Transcriptomic Regulation in Tumors at Sample-Specific Resolution** <br>
+	C Ellington, B Lengerich, TWatkins, J Yang, **H Xiao**, et al <br>
+  *BioArxiv*, <br>
+  [Link to Paper](https://www.biorxiv.org/content/10.1101/2023.12.01.569658v1)
+
 - **From bench to bedside via bytes: Multi-omic immunoprofiling and integration using machine learning and network approaches** <br>
 	**H Xiao**, et al <br>
   *Human Vaccines & Immunotherapeutics*, <br>
