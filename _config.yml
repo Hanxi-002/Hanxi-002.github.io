@@ -47,7 +47,7 @@ round-avatar: true
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
   email: "xiaoh@pitt.edu"
-  rss: true  # remove this line if you don't want to show an RSS link at the bottom
+  # rss: true  # remove this line if you don't want to show an RSS link at the bottom
   linkedin: hanxi-xiao-1b0282119
   github: Hanxi-002
   ORCID: 0000-0003-3849-1696
