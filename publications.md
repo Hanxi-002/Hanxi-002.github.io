@@ -2,6 +2,7 @@
 layout: page
 title: Publications & Projects
 ---
+You can also find my publications on [Google Scholar](https://scholar.google.com/citations?user=O2h32WkAAAAJ&hl=en).
 **2024**
 - **Spatial microniches of IL-2 combine with IL-10 to drive lung migratory TH2 cells in response to inhaled allergen** <br>
 	K He, **H Xiao**,  et al <br>
