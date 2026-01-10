@@ -1,0 +1,35 @@
+:root {
+  --ocre: #34B1C9;
+  --bg-black5: #F2F2F2;
+  --bg-ocre10: #EBF7FA;
+  --ocre60: #85D0DF;
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+  font-family: "Avant Garde", "TeX Gyre Adventor", "Helvetica", Arial, sans-serif;
+}
+h1, h2 {
+  color: var(--ocre);
+}
+
+/* Box styles inspired by mdframed settings in structure.tex */
+.box {
+  background: var(--bg-black5);
+  border-left: 4px solid var(--ocre);
+  padding: 0.9rem 1rem;
+  margin: 1rem 0;
+}
+.box.exercise {
+  background: var(--bg-ocre10);
+}
+.box.corollary {
+  background: var(--bg-black5);
+  border-left-color: #808080;
+}
+.box-title {
+  font-family: "Avant Garde", "TeX Gyre Adventor", "Helvetica", Arial, sans-serif;
+  font-weight: 700;
+  color: var(--ocre);
+  margin-bottom: 0.4rem;
+}
