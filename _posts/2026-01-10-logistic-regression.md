@@ -3,6 +3,7 @@ layout: post
 title: "Logistic Regression"
 subtitle: "A Mathematical Introduction to Binary Classification"
 tags: [machine-learning, statistics]
+mathjax: true
 ---
 
 <style>
