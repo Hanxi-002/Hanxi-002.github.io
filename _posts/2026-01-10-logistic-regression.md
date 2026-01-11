@@ -125,7 +125,7 @@ where  $$\mathbf{1} \in \mathbb{R}^{n \times 1}$$  is an all ones vector and  $$
 
 ## Likelihood and loss
 
-Assume  $$y_i \in \{0,1}$$  and  $$p_i = P(y_i = 1 \mid x_i)$$ .
+Assume  $$y_i \in \\{0,1\\}$$  and  $$p_i = P(y_i = 1 \mid x_i)$$ .
 Then
 
 $$
@@ -279,5 +279,5 @@ so the model can be written without a separate bias term.
 
 ## Practical notes
 
-- This note describes the binary case where  $$y \in \{0,1}$$ .
+- This note describes the binary case where  $$y \in \\{0,1\\}$$ .
 - For numerical stability, implementations often compute the loss using stable transformations rather than directly evaluating  $$\log(p)$$  and  $$\log(1-p)$$  when  $$p$$  is extremely close to 0 or 1.
