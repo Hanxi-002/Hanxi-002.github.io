@@ -68,6 +68,45 @@ $$
 If we wrote  $$y = \sigma(x)$$  directly, this would only make sense when the input is a scalar.
 In practice, each sample has many features, so we first compress the feature vector into a single scalar score and then apply the sigmoid.
 
+<details>
+<summary><strong>Softmax: The Multiclass Generalization</strong></summary>
+
+<div style="margin-top: 1rem;">
+
+While the sigmoid function is perfect for binary classification (two classes), real-world problems often involve multiple classes. The softmax function extends this concept to handle $$K$$ classes.
+
+### Definition
+
+For a vector of scores $$z = [z_1, z_2, \ldots, z_K]$$ , the softmax function converts them into a probability distribution:
+
+$$
+\text{softmax}(z)_j = \frac{\exp(z_j)}{\sum_{k=1}^K \exp(z_k)}
+$$
+
+### Key Properties
+
+- **Outputs sum to 1**: $$\sum_{j=1}^K \text{softmax}(z)_j = 1$$
+- **Each output is between 0 and 1**: Perfect for representing probabilities
+- **Differentiable**: Enables gradient-based optimization
+
+### Connection to Sigmoid
+
+When $$K = 2$$ (binary case), softmax reduces to the sigmoid function. The two functions are fundamentally related, with sigmoid being a special case of softmax.
+
+### Example
+
+If a model outputs scores  $$z = [2.0, 1.0, 0.1]$$  for three classes:
+
+$$
+\text{softmax}(z) \approx [0.659, 0.242, 0.099]
+$$
+
+The model is most confident about class 1 (65.9% probability).
+
+</div>
+
+</details>
+
 <div class="box">
   <div class="box-title">Goal of logistic regression</div>
 
