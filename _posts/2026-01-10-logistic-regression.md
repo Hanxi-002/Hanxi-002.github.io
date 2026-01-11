@@ -48,24 +48,24 @@ h1, h2 {
 
 ## Motivation
 
-In linear regression, we model the relationship between an input \(x\) and a target \(y\) with a linear function such as
+In linear regression, we model the relationship between an input  $$x$$  and a target  $$y$$  with a linear function such as
 
 $$
 y = ax + b.
 $$
 
 For binary classification, we want model outputs that can be interpreted as probabilities.
-Logistic regression does this by mapping a real valued score to the interval \([0,1]\) using the logistic sigmoid.
+Logistic regression does this by mapping a real valued score to the interval  $$[0,1]$$  using the logistic sigmoid.
 
 ## Sigmoid function
 
-The logistic sigmoid maps a scalar \(z \in \mathbb{R}\) to a value strictly between 0 and 1:
+The logistic sigmoid maps a scalar  $$z \in \mathbb{R}$$  to a value strictly between 0 and 1:
 
 $$
 \sigma(z) = \frac{1}{1 + \exp(-z)}.
 $$
 
-If we wrote \(y = \sigma(x)\) directly, this would only make sense when the input is a scalar.
+If we wrote  $$y = \sigma(x)$$  directly, this would only make sense when the input is a scalar.
 In practice, each sample has many features, so we first compress the feature vector into a single scalar score and then apply the sigmoid.
 
 <div class="box">
@@ -81,14 +81,14 @@ $$
 P(y_i = y \mid x_i), \quad \text{for each class label } y.
 $$
 
-In the binary case, we often write \(p_i = P(y_i = 1 \mid x_i)\) and \(1 - p_i = P(y_i = 0 \mid x_i)\).
+In the binary case, we often write  $$p_i = P(y_i = 1 \mid x_i)$$  and  $$1 - p_i = P(y_i = 0 \mid x_i)$$ .
 For more than two classes, the analogous mapping from scores to probabilities is typically done with softmax.
 </div>
 
 ## From features to one score
 
-Let each sample have \(d\) features.
-For sample \(i\),
+Let each sample have  $$d$$  features.
+For sample  $$i$$ ,
 
 $$
 x_i \in \mathbb{R}^d, \quad w \in \mathbb{R}^d, \quad b \in \mathbb{R}.
@@ -106,7 +106,7 @@ $$
 p_i = P(y_i = 1 \mid x_i) = \sigma(z_i).
 $$
 
-In matrix form, for \(n\) samples,
+In matrix form, for  $$n$$  samples,
 
 $$
 X \in \mathbb{R}^{n \times d},\;
@@ -121,11 +121,11 @@ z = Xw + b\mathbf{1},
 p = \sigma(z),
 $$
 
-where \(\mathbf{1} \in \mathbb{R}^{n \times 1}\) is an all ones vector and \(\sigma\) is applied elementwise.
+where  $$\mathbf{1} \in \mathbb{R}^{n \times 1}$$  is an all ones vector and  $$\sigma$$  is applied elementwise.
 
 ## Likelihood and loss
 
-Assume \(y_i \in \{0,1}\) and \(p_i = P(y_i = 1 \mid x_i)\).
+Assume  $$y_i \in \{0,1}$$  and  $$p_i = P(y_i = 1 \mid x_i)$$ .
 Then
 
 $$
@@ -149,7 +149,7 @@ $$
 = -\Bigl[y_i \log(p_i) + (1-y_i)\log(1-p_i)\Bigr].
 $$
 
-The average loss over \(n\) samples is
+The average loss over  $$n$$  samples is
 
 $$
 L = \frac{1}{n}\sum_{i=1}^n \ell_i.
@@ -159,7 +159,7 @@ This is also called binary cross entropy.
 
 ## Gradients
 
-We want the gradients with respect to \(w\) and \(b\) so we can apply gradient based optimization.
+We want the gradients with respect to  $$w$$  and  $$b$$  so we can apply gradient based optimization.
 The dependencies are
 
 $$
@@ -178,7 +178,7 @@ $$
 
 ### Derivative of the sigmoid
 
-For \(p_i = \sigma(z_i)\),
+For  $$p_i = \sigma(z_i)$$ ,
 
 $$
 \frac{\partial p_i}{\partial z_i} = p_i(1-p_i).
@@ -197,7 +197,7 @@ $$
 = \frac{1-y_i}{1-p_i} - \frac{y_i}{p_i}.
 $$
 
-Since \(L = \frac{1}{n}\sum_i \ell_i\), we have
+Since  $$L = \frac{1}{n}\sum_i \ell_i$$ , we have
 
 $$
 \frac{\partial L}{\partial p_i} = \frac{1}{n}\left(\frac{1-y_i}{1-p_i} - \frac{y_i}{p_i}\right).
@@ -213,7 +213,7 @@ $$
 
 ### Gradients for parameters
 
-Since \(z_i = w^\top x_i + b\),
+Since  $$z_i = w^\top x_i + b$$ ,
 
 $$
 \frac{\partial z_i}{\partial w} = x_i,
@@ -238,7 +238,7 @@ $$
 
 ## Gradient descent updates
 
-With learning rate \(\eta > 0\), gradient descent updates are
+With learning rate  $$\eta > 0$$ , gradient descent updates are
 
 $$
 w \leftarrow w - \eta \cdot \frac{1}{n}X^\top(p-y),
@@ -249,8 +249,8 @@ $$
 ## Softmax and logits
 
 Sigmoid maps a scalar score to a single probability.
-For multiclass classification with \(k\) classes, softmax maps a vector of scores to a probability distribution that sums to 1.
-Given scores \(s \in \mathbb{R}^k\),
+For multiclass classification with  $$k$$  classes, softmax maps a vector of scores to a probability distribution that sums to 1.
+Given scores  $$s \in \mathbb{R}^k$$ ,
 
 $$
 \mathrm{softmax}(s)_j = \frac{\exp(s_j)}{\sum_{t=1}^k \exp(s_t)}.
@@ -279,5 +279,5 @@ so the model can be written without a separate bias term.
 
 ## Practical notes
 
-- This note describes the binary case where \(y \in \{0,1}\).
-- For numerical stability, implementations often compute the loss using stable transformations rather than directly evaluating \(\log(p)\) and \(\log(1-p)\) when \(p\) is extremely close to 0 or 1.
+- This note describes the binary case where  $$y \in \{0,1}$$ .
+- For numerical stability, implementations often compute the loss using stable transformations rather than directly evaluating  $$\log(p)$$  and  $$\log(1-p)$$  when  $$p$$  is extremely close to 0 or 1.
