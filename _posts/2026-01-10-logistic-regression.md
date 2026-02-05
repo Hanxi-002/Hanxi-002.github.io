@@ -50,7 +50,7 @@ h1, h2 {
 
 We are all familiar with a linear function. In linear regression, we model the relationship between input $x$ and target $y$ with a linear function such as $y = ax + b$. To put it more bluntly, when we utilize linear regression as the model of choice, we are making the assumption that there exist a linear relationship between the data and the outcome we would like to predict. Even one has little knowledge about linear regression, just by observing the visualization of a lienar funciton below, we can gain the intuition of what type of quesitons linear regression can answer. For example, we can make conclusions that the outcome of this linearly predicted model has to be continuous and may take on any value on the equation line. 
 
-![Hi](assets/img/posts/logistic_regression/linear_function.png)
+![Hi](/assets/img/posts/logistic_regression/linear_function.png)
 
 
 For binary classification, we want model outputs that can be interpreted as probabilities.
