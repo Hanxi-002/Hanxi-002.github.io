@@ -101,7 +101,7 @@ $$
 If we wrote  $$y = \sigma(x)$$  directly, this would only make sense when the input is a scalar.
 In practice, each sample has many features, so we first compress the feature vector into a single scalar score and then apply the sigmoid.
 
-<details>
+<details markdown="1">
 <summary>Bridge: Softmax as the multiclass sigmoid</summary>
 
 While the sigmoid function is perfect for binary classification (two classes), real-world problems often involve multiple classes. The softmax function extends this concept to handle $K$ classes.
