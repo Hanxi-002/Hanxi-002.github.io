@@ -47,7 +47,7 @@ h1, h2 {
 details {
   background: var(--bg-ocre10);
   border-left: 4px solid var(--ocre);
-  padding: 0.9rem 1rem;
+  padding: 0.9rem 1rem 0.9rem 1.5rem;
   margin: 1rem 0;
   border-radius: 4px;
 }
@@ -57,7 +57,8 @@ details summary {
   color: var(--ocre);
   cursor: pointer;
   margin-bottom: 0.5rem;
-  list-style-position: outside;
+  margin-left: -0.3rem;
+  list-style-position: inside;
 }
 details[open] summary {
   margin-bottom: 1rem;
@@ -101,7 +102,7 @@ If we wrote  $$y = \sigma(x)$$  directly, this would only make sense when the in
 In practice, each sample has many features, so we first compress the feature vector into a single scalar score and then apply the sigmoid.
 
 <details>
-<summary>Bridges: Softmax: The Multiclass Generalization</summary>
+<summary>Bridge: Softmax as the multiclass sigmoid</summary>
 
 While the sigmoid function is perfect for binary classification (two classes), real-world problems often involve multiple classes. The softmax function extends this concept to handle $K$ classes.
 
