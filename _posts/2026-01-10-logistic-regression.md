@@ -42,11 +42,31 @@ h1, h2 {
   color: var(--ocre);
   margin-bottom: 0.4rem;
 }
+
+/* Collapsible details box styling */
+details {
+  background: var(--bg-ocre10);
+  border-left: 4px solid var(--ocre);
+  padding: 0.9rem 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+}
+details summary {
+  font-family: "Avant Garde", "TeX Gyre Adventor", "Helvetica", Arial, sans-serif;
+  font-weight: 700;
+  color: var(--ocre);
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  list-style-position: outside;
+}
+details[open] summary {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--ocre60);
+}
 </style>
 
-# Logistic Regression
-
-## Motivation
+# Defining the question we want to answer.
 
 We are all familiar with a linear function. In linear regression, we model the relationship between input $x$ and target $y$ with a linear function such as $y = ax + b$. To put it more bluntly, when we utilize linear regression as the model of choice, we are making the assumption that there exist a linear relationship between the data and the outcome we would like to predict. Even one has little knowledge about linear regression, just by observing the visualization of a lienar funciton below, we can gain the intuition of what type of quesitons linear regression can answer. For example, we can make conclusions that the outcome of this linearly predicted model has to be continuous and may take on any value on the equation line. 
 
@@ -54,11 +74,22 @@ We are all familiar with a linear function. In linear regression, we model the r
   <img src="/assets/img/posts/logistic_regression/linear_function.png" alt="Linear function visualization" style="max-width: 80%;">
 </div>
 
+So, what do we do if the relaionship we want to model is not linear? More specifically, what if we want to build a model that we know the outcome we want to predict only takes on 2 values, 0 and 1? 
 
-For binary classification, we want model outputs that can be interpreted as probabilities.
-Logistic regression does this by mapping a real valued score to the interval  $$[0,1]$$  using the logistic sigmoid.
+# Binary Classification
+If the outcome we want to predict only takes on 2 values, then these outcomes inherently exist in 2 camps. We can then also frame this question as what is called a binary classification question. 
+
+In linear regression, we saw that if we want to model a linear relationship between data and outcome, we used a linear function. So the most intuitive solution is to perhaps search for a function that somehow let us predict 2 values of outcome of interest given the data?
+
+Turns out, there is a function allows us to model this, may seem somewhat strange, relationship. And that is a sigmoid function. 
+<!-- For binary classification, we want model outputs that can be interpreted as probabilities.
+Logistic regression does this by mapping a real valued score to the interval  $$[0,1]$$  using the logistic sigmoid. -->
 
 ## Sigmoid function
+
+<div style="text-align: center; margin: 1.5rem 0;">
+  <img src="/assets/img/posts/logistic_regression/sigmoid_function.png" alt="Sigmoid function visualization" style="max-width: 80%;">
+</div>
 
 The logistic sigmoid maps a scalar  $$z \in \mathbb{R}$$  to a value strictly between 0 and 1:
 
@@ -70,11 +101,9 @@ If we wrote  $$y = \sigma(x)$$  directly, this would only make sense when the in
 In practice, each sample has many features, so we first compress the feature vector into a single scalar score and then apply the sigmoid.
 
 <details>
-<summary><strong>Softmax: The Multiclass Generalization</strong></summary>
+<summary>Bridges: Softmax: The Multiclass Generalization</summary>
 
-<div style="margin-top: 1rem;">
-
-While the sigmoid function is perfect for binary classification (two classes), real-world problems often involve multiple classes. The softmax function extends this concept to handle $$K$$ classes.
+While the sigmoid function is perfect for binary classification (two classes), real-world problems often involve multiple classes. The softmax function extends this concept to handle $K$ classes.
 
 ### Definition
 
@@ -103,8 +132,6 @@ $$
 $$
 
 The model is most confident about class 1 (65.9% probability).
-
-</div>
 
 </details>
 
