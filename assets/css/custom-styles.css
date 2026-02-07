@@ -1,6 +1,6 @@
 /* ========================================
    Custom Styles — Hanxi Xiao Academic Site
-   Overrides for Beautiful Jekyll defaults
+   Full dark theme overrides for Beautiful Jekyll
    ======================================== */
 
 /* --- Typography --- */
@@ -9,13 +9,18 @@
 :root {
   --body-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --header-font: 'Lora', Georgia, serif;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-light: #dbeafe;
-  --navy: #0f172a;
-  --navy-light: #1e293b;
-  --slate: #64748b;
-  --slate-light: #94a3b8;
+  --accent: #60a5fa;
+  --accent-hover: #93c5fd;
+  --accent-dim: rgba(96, 165, 250, 0.15);
+  --bg-primary: #0f172a;
+  --bg-elevated: #1e293b;
+  --bg-card: #162032;
+  --bg-card-hover: #1e293b;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-color: #1e293b;
+  --border-subtle: rgba(255, 255, 255, 0.06);
 }
 
 body {
@@ -27,7 +32,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--header-font);
   font-weight: 700;
-  color: var(--navy);
+  color: var(--text-primary);
 }
 
 p {
@@ -63,19 +68,19 @@ a {
   letter-spacing: -0.01em;
 }
 
-/* Avatar in navbar — complement the dark background */
+/* Avatar in navbar */
 .avatar-container {
   border: none;
 }
 
 .avatar-img-border {
-  border: 3px solid rgba(255, 255, 255, 0.15);
+  border: 3px solid rgba(255, 255, 255, 0.1);
   background: transparent;
   transition: border-color 0.2s ease;
 }
 
 .avatar-img-border:hover {
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* --- Header Section --- */
@@ -83,20 +88,21 @@ a {
   font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: -0.02em;
+  color: var(--text-primary);
 }
 
 .intro-header .page-heading .page-subheading {
   font-family: var(--body-font);
   font-weight: 400;
   font-size: 1.125rem;
-  color: var(--slate);
+  color: var(--text-secondary);
   max-width: 600px;
   margin: 0.5rem auto 0;
 }
 
 hr.small {
   border-color: var(--accent);
-  opacity: 0.4;
+  opacity: 0.3;
 }
 
 /* --- Bio Section (Homepage) --- */
@@ -116,26 +122,33 @@ hr.small {
   height: 200px;
   object-fit: cover;
   border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--border-subtle);
 }
 
 .bio-text h2 {
   font-size: 1.75rem;
   margin-top: 0;
   margin-bottom: 0.25rem;
+  color: var(--text-primary);
 }
 
 .bio-affiliation {
-  color: var(--slate);
+  color: var(--text-secondary);
   font-size: 0.9375rem;
   margin-bottom: 1rem;
   line-height: 1.5;
+}
+
+.bio-affiliation a {
+  color: var(--accent);
 }
 
 .bio-text p {
   font-size: 1rem;
   margin: 0.75rem 0;
   line-height: 1.7;
+  color: var(--text-secondary);
 }
 
 .bio-links {
@@ -153,7 +166,7 @@ hr.small {
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--accent);
-  background: var(--accent-light);
+  background: var(--accent-dim);
   border-radius: 6px;
   text-decoration: none;
   transition: all 0.2s ease;
@@ -161,7 +174,7 @@ hr.small {
 
 .bio-links a:hover {
   background: var(--accent);
-  color: #fff;
+  color: var(--bg-primary);
 }
 
 .bio-links a i {
@@ -172,10 +185,10 @@ hr.small {
 .section-heading {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--navy);
+  color: var(--text-primary);
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--accent-light);
+  border-bottom: 2px solid var(--accent-dim);
 }
 
 /* --- Publication Cards --- */
@@ -190,14 +203,14 @@ hr.small {
   padding: 1.25rem 0 1.25rem 1.25rem;
   margin-bottom: 0.75rem;
   border-left: 3px solid var(--accent);
-  background: #f8fafc;
+  background: var(--bg-card);
   border-radius: 0 8px 8px 0;
   transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .pub-card:hover {
-  background: #f1f5f9;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  background: var(--bg-card-hover);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
 }
 
 .pub-content {
@@ -209,26 +222,26 @@ hr.small {
   font-family: var(--body-font);
   font-weight: 600;
   font-size: 1rem;
-  color: var(--navy);
+  color: var(--text-primary);
   margin: 0 0 0.35rem 0;
   line-height: 1.4;
 }
 
 .pub-authors {
   font-size: 0.875rem;
-  color: var(--slate);
+  color: var(--text-muted);
   margin: 0 0 0.25rem 0;
 }
 
 .pub-authors .me {
   font-weight: 600;
-  color: var(--navy);
+  color: var(--accent);
 }
 
 .pub-venue {
   font-size: 0.875rem;
   font-style: italic;
-  color: var(--slate-light);
+  color: var(--text-muted);
   margin: 0 0 0.6rem 0;
 }
 
@@ -246,13 +259,13 @@ hr.small {
 }
 
 .venue-badge.top {
-  background: #dcfce7;
-  color: #166534;
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
 }
 
 .venue-badge.high {
-  background: #dbeafe;
-  color: #1e40af;
+  background: var(--accent-dim);
+  color: var(--accent);
 }
 
 .pub-links {
@@ -267,7 +280,7 @@ hr.small {
   font-weight: 500;
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
-  background: var(--accent-light);
+  background: var(--accent-dim);
   color: var(--accent);
   text-decoration: none;
   transition: all 0.2s ease;
@@ -275,7 +288,7 @@ hr.small {
 
 .pub-links a:hover {
   background: var(--accent);
-  color: #fff;
+  color: var(--bg-primary);
 }
 
 .see-all-link {
@@ -307,7 +320,7 @@ hr.small {
   display: flex;
   gap: 1rem;
   padding: 0.6rem 0;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--border-subtle);
   font-size: 0.9375rem;
   line-height: 1.5;
 }
@@ -321,18 +334,22 @@ hr.small {
   width: 100px;
   font-size: 0.8125rem;
   font-weight: 500;
-  color: var(--slate-light);
+  color: var(--text-muted);
   font-variant-numeric: tabular-nums;
   padding-top: 0.1rem;
 }
 
 .news-content {
   flex: 1;
-  color: var(--navy-light);
+  color: var(--text-secondary);
 }
 
 .news-content a {
   font-weight: 500;
+}
+
+.news-content strong {
+  color: var(--text-primary);
 }
 
 /* --- Footer --- */
@@ -352,16 +369,44 @@ footer .theme-by {
 /* --- Blog Post List --- */
 .post-preview .post-title {
   font-family: var(--header-font);
+  color: var(--text-primary);
 }
 
 .post-preview .post-subtitle {
   font-family: var(--body-font);
-  color: var(--slate);
+  color: var(--text-secondary);
 }
 
 .post-meta {
   font-size: 0.8125rem;
-  color: var(--slate-light);
+  color: var(--text-muted);
+}
+
+/* --- Dark theme fixes for Beautiful Jekyll elements --- */
+blockquote {
+  color: var(--text-muted);
+}
+
+.jumbotron {
+  background: var(--bg-elevated);
+}
+
+/* Fix code blocks for dark background */
+code {
+  background: var(--bg-elevated);
+  color: var(--accent);
+}
+
+pre {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Fix form inputs if any */
+input, textarea, select {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--border-color);
 }
 
 /* --- Responsive --- */
