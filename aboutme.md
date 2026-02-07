@@ -1,16 +1,26 @@
 ---
 layout: page
-title: About me
-subtitle: Is this updated??
+title: About Me
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+I am a PhD candidate in the [Joint CMU -- University of Pittsburgh PhD Program in Computational Biology](https://www.compbio.cmu.edu/), where I work on AI/ML research for immunology in the [Das Lab](https://www.jishnulab.org/) at the [Center for Systems Immunology](https://www.immunology.pitt.edu/research/center-systems-immunology).
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+My research interests include **statistical modeling** and **deep learning** for noisy, high-dimensional biological signals. Currently, I am developing an interpretable variant of attention mechanisms for transformer models.
 
-What else do you need?
+### Research Areas
 
-### My story
+- **Interpretable Machine Learning** -- Building transparent models that reveal biological mechanisms, not just predictions. My work on [SLIDE](https://www.nature.com/articles/s41592-024-02175-z) (Nature Methods) discovers latent factor interactions across biological domains.
+- **Computational Immunology** -- Applying ML to multi-omic data (single-cell RNA-seq, spatial transcriptomics, systems serology) to understand immune responses in disease.
+- **Deep Learning for Sequences** -- Developing attention-based architectures for biological sequence data with built-in interpretability.
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+### Education
+
+- **PhD, Computational Biology** -- Carnegie Mellon University & University of Pittsburgh (in progress)
+- Passed thesis proposal and doctoral candidate exam (October 2023)
+
+### Selected Honors
+
+- Research presentation award, University of Pittsburgh Immunology Retreat (2024)
+- Quantitative Methodologies Pilot Program (QuMP) grant, co-PI (2023)
+
+Feel free to reach out at [xiaoh@pitt.edu](mailto:xiaoh@pitt.edu).

@@ -2,9 +2,10 @@
 layout: page
 title: Publications & Projects
 ---
-You can also find my publications on [Google Scholar](https://scholar.google.com/citations?user=O2h32WkAAAAJ&hl=en). <br>
-Publications are listed in chronological order. <br>
-**2024**
+You can also find my publications on [Google Scholar](https://scholar.google.com/citations?user=O2h32WkAAAAJ&hl=en).
+Publications are listed in reverse chronological order.
+
+### 2024
 - **Spatial microniches of IL-2 combine with IL-10 to drive lung migratory TH2 cells in response to inhaled allergen** <br>
 	K He, **H Xiao**,  et al <br>
   *Nature Immunology* <br>
@@ -35,10 +36,10 @@ Publications are listed in chronological order. <br>
 
 - **SLIDE: Significant Latent Factor Interaction Discovery and Exploration across biological domains** <br>
 	J Rahimikollu <sup>*</sup>, <strong>H Xiao</strong><sup>*</sup>,  et al <br>
-  <em>Nature Method</em>, <sup>*</sup> represent equal contribution <br>
+  <em>Nature Methods</em>, <sup>*</sup> equal contribution <br>
   [Link to Paper](https://www.nature.com/articles/s41592-024-02175-z)
 
-**2023**
+### 2023
 - **Contextualized Networks Reveal Heterogeneous Transcriptomic Regulation in Tumors at Sample-Specific Resolution** <br>
 	C Ellington, B Lengerich, TWatkins, J Yang, **H Xiao**, et al <br>
   *BioArxiv*, <br>
@@ -51,7 +52,7 @@ Publications are listed in chronological order. <br>
 
 - **Cell Type–Specific Biomarkers of Systemic Sclerosis Disease Severity Capture Cell-Intrinsic and Cell-Extrinsic Circuits** <br>
 	J Berkowitz, T Tabib, **H Xiao**, et al <br>
-  *Arthritis & Rheumatoogy* <br>
+  *Arthritis & Rheumatology* <br>
   [Link to Paper](https://acrjournals.onlinelibrary.wiley.com/doi/full/10.1002/art.42536)
 
 - **Tempered IL-2 Signals Program PD-1 Checkpoint Blockade-Responsive Stem-like Exhausted T Cells During Priming** <br>
@@ -61,11 +62,11 @@ Publications are listed in chronological order. <br>
 
 - **Programming of checkpoint blockade responsive exhausted T cells by rheostatic IL-2 signals during priming by dendritic cells** <br>
 	S Sarkar, R Toumi, **H Xiao**, et al <br>
-  *The Joutnal of Immunology* <br>
+  *The Journal of Immunology* <br>
   [Link to Paper](https://journals.aai.org/jimmunol/article/210/1_Supplement/83.16/264795/Programming-of-checkpoint-blockade-responsive)
 
 
-**2022**
+### 2022
 - **Autoreactive CD8+ T cells are restrained by an exhaustion-like program that is maintained by LAG3** <br>
 	S Grebinoski, Q Zhang, A Cillo, S Manne, **H Xiao**, et al <br>
   *Nature Immunology* <br>
@@ -81,7 +82,7 @@ R Toumi, **H Xiao**, et al <br>
 *Journal of Immunology* <br>
 [Link to Paper](https://journals.aai.org/jimmunol/article/208/1_Supplement/182.30/237180/Early-heterogeneity-of-IL2R-expression-influences)
 
-**2021**
+### 2021
 - **Autocrine and paracrine IL-2 signals collaborate to regulate distinct phases of CD8 T cell memory** <br>
 R Toumi, Y Yuzefpolskiy, A Vegaraju, **H Xiao**, et al <br>
 *Cell Reports* <br>
@@ -92,19 +93,19 @@ V Kalia, Y Yuzefpolskiy, A Vegaraju, **H Xiao**, et al <br>
 *Science Translational Medicine* <br>
 [Link to Paper](https://pubmed.ncbi.nlm.nih.gov/34644150/)
 
-**2020**
+### 2020
 - **PD-1 Signals are Critical for Homeostatic Maintenance of Memory CD8 T Cells** <br>
 S Sarkar, Y Yuzefpolskiy, A Vegaraju, **H Xiao**, et al <br>
 *The Journal of Immunology* <br>
 [Link to Paper](https://journals.aai.org/jimmunol/article/204/1_Supplement/81.5/64465/)
 
-**2019**
+### 2019
 - **IL-2 Signals Program the Fate of Exhausted CD8 T cells** <br>
 V Kalia, **H Xiao**, et al <br>
 *The Journal of Immunology* <br>
 [Link to Paper](https://journals.aai.org/jimmunol/article/202/1_Supplement/181.24/59486/IL-2-Signals-Program-the-Fate-of-Exhausted-CD8-T)
 
-**2018**
+### 2018
 - **Programming of CD8 T cell quantity and polyfunctionality by direct IL-1 signals** <br>
 S Sarkar, Y Yuzefpolskiy, **H Xiao**, et al <br>
 *The Journal of Immunology* <br>

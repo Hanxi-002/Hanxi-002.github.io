@@ -180,6 +180,7 @@ $$
 $$
 X \in \mathbb{R}^{n \times d},\;
 w \in \mathbb{R}^{d \times 1},\;
+b \in \mathbb{R}^{d \times 1},\;
 z \in \mathbb{R}^{n \times 1},\;
 y \in \mathbb{R}^{n \times 1},\;
 p \in \mathbb{R}^{n \times 1}.
@@ -191,7 +192,16 @@ $$
 (Remember, the "Bridge" section is not meant as a full deep dive or tutorial. It is meant for pattern recognition to organize and connect all the loose terminology and concepts that are closely connected and/or similar.)
 
 Sometimes, you will see a simple mathmeticle trick to make calculations easier and that is wrapping the bias inside the input matrix. 
-In above section, 
+In above section, we established the following dimensions for the data and the parameters of our logistic regression model:
+$$
+X \in \mathbb{R}^{n \times d},\;
+w \in \mathbb{R}^{d \times 1},\;
+z \in \mathbb{R}^{n \times 1},\;
+y \in \mathbb{R}^{n \times 1},\;
+p \in \mathbb{R}^{n \times 1}.
+$$
+
+
 where  $b_1 \in \mathbb{R}^{n \times 1}$  is an all ones vector and  $\sigma$  is applied elementwise.
 
 </details>
@@ -200,7 +210,7 @@ where  $b_1 \in \mathbb{R}^{n \times 1}$  is an all ones vector and  $\sigma$  i
 
 ## Likelihood and loss
 
-Assume  $$y_i \in \\{0,1\\}$$  and  $$p_i = P(y_i = 1 \mid x_i)$$ .
+Assume  $y_i \in {0,1}$  and  $p_i = P(y_i = 1 \mid x_i)$ .
 Then
 
 $$

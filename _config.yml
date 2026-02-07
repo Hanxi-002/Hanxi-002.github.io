@@ -10,7 +10,7 @@
 ############################
 
 # Name of website
-title: Hi, I'm Hanxi (Han-Shee) Xiao! 
+title: Hanxi Xiao
 
 # Your name to show in the footer
 author: Hanxi Xiao
@@ -20,6 +20,7 @@ author: Hanxi Xiao
 ###############################################
 
 navbar-links:
+  About: "aboutme"
   Publications: "publications"
   Blog: "blog"
 
@@ -77,7 +78,7 @@ social-network-links:
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
-rss-description: This website is a virtual proof that I'm awesome
+rss-description: Hanxi Xiao's research blog on machine learning and computational biology
 
 ###########################
 # --- General options --- #
@@ -105,10 +106,10 @@ feed_show_excerpt: true
 feed_show_tags: true
 
 # Add a search button to the navbar
-post_search: true
+post_search: false
 
 # Add a button in the footer to edit the current page. Only works if your website is hosted on GitHub
-edit_page_button: true
+edit_page_button: false
 
 # Allow sub-menu items (second-level navigation menu items) to be longer than the top-level menu
 # If this setting is off, then long sub-menu words might get cut off
@@ -125,16 +126,16 @@ navbar-var-length: false
 # Personalize the colours in your website. Colour values can be any valid CSS colour
 
 page-col: "#FFFFFF"
-text-col: "#404040"
-link-col: "#008AFF"
-hover-col: "#0085A1"
-navbar-col: "#EAEAEA"
-navbar-text-col: "#404040"
-navbar-border-col: "#DDDDDD"
-footer-col: "#EAEAEA"
-footer-text-col: "#777777"
-footer-link-col: "#404040"
-footer-hover-col: "#0085A1"
+text-col: "#1e293b"
+link-col: "#2563eb"
+hover-col: "#1d4ed8"
+navbar-col: "#0f172a"
+navbar-text-col: "#e2e8f0"
+navbar-border-col: "#1e293b"
+footer-col: "#0f172a"
+footer-text-col: "#94a3b8"
+footer-link-col: "#94a3b8"
+footer-hover-col: "#60a5fa"
 
 # Alternatively, the navbar, footer, and page background can be set to an image
 # instead of colour
@@ -144,11 +145,11 @@ footer-hover-col: "#0085A1"
 #page-img: "/assets/img/bgimage.png"
 
 # Suggest a colour for mobile browsers to use as the browser's theme. This is only supported by a few mobile browsers.
-#mobile-theme-col: "#0085A1"
+mobile-theme-col: "#0f172a"
 
 # For any extra visual customization, you can include additional CSS files in every page on your site. List any custom CSS files here
-#site-css:
-#  - "/assets/css/custom-styles.css"
+site-css:
+  - "/assets/css/custom-styles.css"
 
 # If you have common JavaScript files that should be included in every page, list them here
 #site-js:
