@@ -77,72 +77,52 @@ We are all familiar with a linear function. In linear regression, we model the r
 
 So, what do we do if the relaionship we want to model is not linear? More specifically, what if we want to build a model that we know the outcome we want to predict only takes on 2 values, 0 and 1? 
 
-# Binary Classification
+# Building Intuitition for Binary Classification
 If the outcome we want to predict only takes on 2 values, then these outcomes inherently exist in 2 camps. We can then also frame this question as what is called a binary classification question. 
 
 In linear regression, we saw that if we want to model a linear relationship between data and outcome, we used a linear function. So the most intuitive solution is to perhaps search for a function that somehow let us predict 2 values of outcome of interest given the data?
 
-Turns out, there is a function allows us to model this, may seem somewhat strange, relationship. And that is a sigmoid function. 
+Turns out, there is a function allows us to model this, may seem somewhat strange, relationship. And that is a logistic function. 
 <!-- For binary classification, we want model outputs that can be interpreted as probabilities.
 Logistic regression does this by mapping a real valued score to the interval  $$[0,1]$$  using the logistic sigmoid. -->
 
-## Sigmoid function
-
+## Logistic Function
+### Visualization
 <div style="text-align: center; margin: 1.5rem 0;">
   <img src="/assets/img/posts/logistic_regression/sigmoid_function.png" alt="Sigmoid function visualization" style="max-width: 80%;">
 </div>
 
-The logistic sigmoid maps a scalar  $$z \in \mathbb{R}$$  to a value strictly between 0 and 1:
+Let's not worry about what a logistic function is, but just looking at what it looks like. By visualizing the logistic function, we see that the the y is mostly concentrated in 2 places, close to 0 and close to 1. Not only this function solved our above problem, but also provides a nice addition that the outcome is always bounded by 0 and 1. And this should sound really familiar as it is also one of the important definition of what a "probability" is. 
+
+So logistic function allows us to do two things: (i) be able to model the relationship of the input to the outcome that has 2 classes and (ii) be able to model the probability of the outcome as well. So in addition to asking, does the input belong to class 1 or class 2? We can ask what is the probability of the input belong to class 1. 
+
+### Understanding the Logistic Function
+Now we are getting closer to the case we want to crack, let's look into more of the logistic function. 
+
+The logistic function maps a scalar  $z \in \mathbb{R}$ to a value strictly between 0 and 1:
 
 $$
 \sigma(z) = \frac{1}{1 + \exp(-z)}.
 $$
 
-If we wrote  $$y = \sigma(x)$$  directly, this would only make sense when the input is a scalar.
-In practice, each sample has many features, so we first compress the feature vector into a single scalar score and then apply the sigmoid.
+Yay, now when we input a sample $x$, we can use the logistic function to get a y right? Not quite, you may notice 2 small details that doesn't quite make sense here. 1 is that we specifically said that "the logistic function maps a **scalar** to a ...";  and 2 is that you notice that we wrote the input to the above logistic function as z instead of x. 
 
-<details markdown="1">
-<summary>Bridge: Softmax as the multiclass sigmoid</summary>
+The answer to these 2 questions are actually very much related. Let's start with problem 1: if logistic funciton only takes in a scalar, then what do we do when we have multi-variate input data?
 
-While the sigmoid function is perfect for binary classification (two classes), real-world problems often involve multiple classes. The softmax function extends this concept to handle $K$ classes.
+Well, how about we come up with a way to describe the vector of features only using 1 scalar, and define that descriptive sclar z. Here, both of the prbolems have been solved!
 
-### Definition
 
-For a vector of scores $$z = [z_1, z_2, \ldots, z_K]$$ , the softmax function converts them into a probability distribution:
+### Big Picture of The Model
 
-$$
-\text{softmax}(z)_j = \frac{\exp(z_j)}{\sum_{k=1}^K \exp(z_k)}
-$$
+At this point, we started with the problem we want to solve: find a way to predict the outcome $y$ given some data $x$ knowing that it is a binary classification. We first identified that the logistic function can help us model this relationship because of its unique S shape. We then realized, by visualizin the fuction, that not only the shape of the function means that most of the y value will sit in the extreme 2 sides of the funciton, but the y is also bounded between 0 and 1, which is one of the exact definitions of probabilities. So not only can we know if one datapoint belong to class 1 or class 2, we can also learn that if this data is 90% of class1 or 70% chance of beloning to class 1.  
 
-### Key Properties
+After that, by investigating the mathematical form of the logistic function, we realized that if we want a scalar output form the funciton, which we do because if datapoint should only have one number represernting the probability of it belonging to a class, we can only input one scalar as the input. So, when we deal with multi-variate datasets, we have to find some work around to summarize the informaion of many features into one number. 
 
-- **Outputs sum to 1**: $$\sum_{j=1}^K \text{softmax}(z)_j = 1$$
-- **Each output is between 0 and 1**: Perfect for representing probabilities
-- **Differentiable**: Enables gradient-based optimization
-
-### Connection to Sigmoid
-
-When $$K = 2$$ (binary case), softmax reduces to the sigmoid function. The two functions are fundamentally related, with sigmoid being a special case of softmax.
-
-### Example
-
-If a model outputs scores  $$z = [2.0, 1.0, 0.1]$$  for three classes:
-
-$$
-\text{softmax}(z) \approx [0.659, 0.242, 0.099]
-$$
-
-The model is most confident about class 1 (65.9% probability).
-
-</details>
-
-<div class="box">
-  <div class="box-title">Goal of logistic regression</div>
-
-Before we build the full multivariate model, it helps to look at what the sigmoid gives us.
+Before we build the full multivariate model, it helps to look at what the sigmoid gives us:
 
 - The output never goes below 0 and never goes above 1, which matches the range of a probability.
 - Logistic regression is used when we want to learn probabilities for classification.
+- It takes a scalar as an input and outputs a scalar that we interpret as probability.
 - The goal is to model the probability that a sample belongs to a particular class:
 
 $$
@@ -150,46 +130,73 @@ P(y_i = y \mid x_i), \quad \text{for each class label } y.
 $$
 
 In the binary case, we often write  $$p_i = P(y_i = 1 \mid x_i)$$  and  $$1 - p_i = P(y_i = 0 \mid x_i)$$ .
-For more than two classes, the analogous mapping from scores to probabilities is typically done with softmax.
-</div>
 
-## From features to one score
 
-Let each sample have  $$d$$  features.
-For sample  $$i$$ ,
+# Building Logistic Regression Mathmatically
+## Defining the score, $z$.
+We know that the logistic function is perfect to model the relationship we are interested in, given input data $x$, predict the probability of $x$ beining in class0 and class1. In linear regression, we are able to plug in the data directly into the linear equation. But we can't do that in logistic regression when we have multi-variate data. We have to first figure out how to calcualte that one scalar, also called the score, for each datapoint $x_i$. 
+
+Turns out, the score is fairly simple to calcualte, we can use the linear equation here.  
+
+Let each $x_i$ have $d$ features,
+$$
+z_i = w^\top x_i + b
+$$
 
 $$
 x_i \in \mathbb{R}^d, \quad w \in \mathbb{R}^d, \quad b \in \mathbb{R}.
 $$
 
-We form a scalar score
-
+Logistic regression defines this score to be calcualted using a linear function and the model defines the score, $z$, to be interpreted as the log-odds ratio. Log-odds is defined as the following: for any probability p of class 1, we get
 $$
-z_i = w^\top x_i + b \in \mathbb{R},
+log-odds = log (\frac{p(x)}{1-p(x)}).
+$$
+If $p = 0.5$, then log-odds $= 0$.<br>
+If $p > 0.5$, then log-odds $> 0$.<br>
+If $p < 0.5$, then log-odds $< 0$.<br>
+
+In other words, we can view the log-odds as the "confidence scale" of if the data $x$ belong to class 1. Now, in logistic regression, we know we cauclate the score using the linear funciton, so we can combine the expressions and get:
+$$
+\text{log-odds} = log (\frac{p(x)}{1-p(x)}) = w^\top x_i + b
 $$
 
-and map it to a probability
+Intuitively, we are not combining the features in a "magical" way, we are asking how can we find the best parameters $w$ to build the most logistic regression model that understand how much each of the $d$ features contribute to the "confidence scale". We then simply use the logistic function to re-scale the log-odds score in terms of probability:
 
 $$
 p_i = P(y_i = 1 \mid x_i) = \sigma(z_i).
 $$
 
-In matrix form, for  $$n$$  samples,
+(Bridge section here for non-linear binary classification?)
+## Establish Logstic Regression Model
+We can now establish the full model in a multivariate form. For  $n$  samples,
+$$
+p = \sigma(z)
+$$
+
+$$
+z = Xw + b
+$$
 
 $$
 X \in \mathbb{R}^{n \times d},\;
 w \in \mathbb{R}^{d \times 1},\;
 z \in \mathbb{R}^{n \times 1},\;
-y \in \mathbb{R}^{n \times 1}.
+y \in \mathbb{R}^{n \times 1},\;
+p \in \mathbb{R}^{n \times 1}.
 $$
 
-$$
-z = Xw + b\mathbf{1},
-\qquad
-p = \sigma(z),
-$$
+<!-- ###################################### Wrapping Bias in Features ################################################## -->
+<details markdown="1">
+<summary>Bridge: Warpping bias in input matrix</summary>
+(Remember, the "Bridge" section is not meant as a full deep dive or tutorial. It is meant for pattern recognition to organize and connect all the loose terminology and concepts that are closely connected and/or similar.)
 
-where  $$\mathbf{1} \in \mathbb{R}^{n \times 1}$$  is an all ones vector and  $$\sigma$$  is applied elementwise.
+Sometimes, you will see a simple mathmeticle trick to make calculations easier and that is wrapping the bias inside the input matrix. 
+In above section, 
+where  $b_1 \in \mathbb{R}^{n \times 1}$  is an all ones vector and  $\sigma$  is applied elementwise.
+
+</details>
+<!-- ###################################### Softmax Bridge ################################################## -->
+
 
 ## Likelihood and loss
 
@@ -349,3 +356,44 @@ so the model can be written without a separate bias term.
 
 - This note describes the binary case where  $$y \in \\{0,1\\}$$ .
 - For numerical stability, implementations often compute the loss using stable transformations rather than directly evaluating  $$\log(p)$$  and  $$\log(1-p)$$  when  $$p$$  is extremely close to 0 or 1.
+
+
+<!-- ###################################### Softmax Bridge ################################################## -->
+<details markdown="1">
+<summary>Bridge: Softmax as the multiclass sigmoid</summary>
+(Remember, the "Bridge" section is not meant as a full deep dive or tutorial. It is meant for pattern recognition to organize and connect all the loose terminology and concepts that are closely connected and/or similar.)
+
+If you have seen softmax functions before, you may have started to recognize that softmax looks familiar with the logistic function and performs a somewhat related task. Indeed, while the sigmoid function is perfect for binary classification (two classes), real-world problems often involve multiple classes. The softmax function extends this concept to handle $K$ classes.
+
+### Definition
+For a vector of scores that describe one sample $$z = [z_1, z_2, \ldots, z_K]$$ , the softmax function converts them into a probability distribution:
+
+$$
+\text{softmax}(z_j) = \frac{\exp(z_j)}{\sum_{k=1}^K \exp(z_k)}
+$$
+
+In other words, instead of using 1 scalar to "summarize and describe" a multivariate datapoint $x_i$ in logistic regression. We summarize the datapoint by using $K$ number of scores and then learn the probability of $x_i$ belong to each of the $K$ classes. 
+
+### Key Properties
+- **Outputs sum to 1**: $$\sum_{j=1}^K \text{softmax}(z_j) = 1$$
+- **Each output is between 0 and 1**: Perfect for representing probabilities
+- **Differentiable**: Enables gradient-based optimization
+
+### Connection to the Logistic Function
+
+When $K = 2$ (binary case), softmax reduces to the sigmoid function. The two functions are fundamentally related, with sigmoid being a special case of softmax.
+We first review the key realization for binary clasification, we only need to know $p(y = 0 | x)$ and we get $p(y = 1 | x)$ for free since the sum of both probabilities has to be 1.
+
+$$
+\begin{align*}
+\text{softmax}(z_0) &= \frac{\exp(z_0)}{\exp(z_0) + \exp(z_1)} \\[1em]
+&= \frac{\frac{\exp(z_0)}{\exp(z_0)}}{\frac{\exp(z_0)}{\exp(z_0)} + \frac{\exp(z_1)}{\exp(z_0)}} \\[1em]
+&= \frac{1}{1 + \exp(z_1 - z_0)}
+\end{align*}
+$$
+
+Intuitively, we should learn 2 scores for logistic regression given the introduction we gave about softmax above. However, remember that we get $p(y = 1 | x)$ for free, so we only need one scalar score for $x_i$ and learn the probability of $p(y = 0 | x)$. Hence, we can se $z_1 = 0$ and get:
+$$\frac{1}{1+ exp(-z_0)}$$
+
+</details>
+<!-- ###################################### Softmax Bridge ################################################## -->
