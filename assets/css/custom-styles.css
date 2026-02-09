@@ -446,6 +446,31 @@ input, textarea, select {
   }
 }
 
+/* --- Details / Collapsible Sections --- */
+details {
+  background: var(--bg-card);
+  border-left: 4px solid var(--accent);
+  padding: 0.9rem 1rem 0.9rem 1.5rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  color: var(--text-primary);
+}
+
+details summary {
+  font-weight: 700;
+  color: var(--accent);
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  margin-left: -0.3rem;
+  list-style-position: inside;
+}
+
+details[open] summary {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--accent-dim);
+}
+
 /* --- Utility --- */
 .mt-section {
   margin-top: 3rem;

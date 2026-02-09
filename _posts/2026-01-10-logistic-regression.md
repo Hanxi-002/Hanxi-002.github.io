@@ -8,10 +8,10 @@ mathjax: true
 
 <style>
 :root {
-  --ocre: #34B1C9;
-  --bg-black5: #F2F2F2;
-  --bg-ocre10: #EBF7FA;
-  --ocre60: #85D0DF;
+  --ocre: #60a5fa;
+  --ocre60: rgba(96, 165, 250, 0.3);
+  --bg-black5: #1e293b;
+  --bg-ocre10: #162032;
 }
 
 /* Headings */
@@ -28,13 +28,14 @@ h1, h2 {
   border-left: 4px solid var(--ocre);
   padding: 0.9rem 1rem;
   margin: 1rem 0;
+  color: #e2e8f0;
 }
 .box.exercise {
   background: var(--bg-ocre10);
 }
 .box.corollary {
   background: var(--bg-black5);
-  border-left-color: #808080;
+  border-left-color: #64748b;
 }
 .box-title {
   font-family: "Avant Garde", "TeX Gyre Adventor", "Helvetica", Arial, sans-serif;
@@ -50,6 +51,7 @@ details {
   padding: 0.9rem 1rem 0.9rem 1.5rem;
   margin: 1rem 0;
   border-radius: 4px;
+  color: #e2e8f0;
 }
 details summary {
   font-family: "Avant Garde", "TeX Gyre Adventor", "Helvetica", Arial, sans-serif;
