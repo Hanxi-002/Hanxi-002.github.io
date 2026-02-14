@@ -380,6 +380,27 @@ footer .theme-by {
   color: var(--text-muted);
 }
 
+/* --- Blog intro box (dark theme readable) --- */
+.blog-intro.box-note {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  border-left: 0.3125rem solid var(--accent);
+}
+
+.blog-intro.box-note strong {
+  color: var(--text-primary);
+}
+
+.blog-intro.box-note a {
+  color: var(--accent);
+}
+
+.blog-intro.box-note a:hover,
+.blog-intro.box-note a:focus {
+  color: var(--accent-hover);
+}
+
 /* --- Dark theme fixes for Beautiful Jekyll elements --- */
 blockquote {
   color: var(--text-muted);
