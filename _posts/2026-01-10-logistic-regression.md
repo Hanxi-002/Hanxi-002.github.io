@@ -150,8 +150,6 @@ A common default is $\textcolor{#f472b6}{\tau} = 0.5$, but it is often adjusted 
 
 <details markdown="1">
 <summary>Bridge: What is a logit</summary>
-Why it matters now: we are about to define a score $\textcolor{#fbbf24}{z}$ and interpret it.
-
 One key fact is that the **logit** is the log odds:
 $$
 \operatorname{logit}(\textcolor{#2dd4bf}{p}) = \log\frac{\textcolor{#2dd4bf}{p}}{1-\textcolor{#2dd4bf}{p}}.
