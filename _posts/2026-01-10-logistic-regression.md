@@ -69,174 +69,250 @@ details[open] summary {
 }
 </style>
 
-# Defining the question we want to answer.
+# Motivation and the binary classification goal
 
-We are all familiar with a linear function. In linear regression, we model the relationship between input $x$ and target $y$ with a linear function such as $y = ax + b$. To put it more bluntly, when we utilize linear regression as the model of choice, we are making the assumption that there exist a linear relationship between the data and the outcome we would like to predict. Even one has little knowledge about linear regression, just by observing the visualization of a lienar funciton below, we can gain the intuition of what type of quesitons linear regression can answer. For example, we can make conclusions that the outcome of this linearly predicted model has to be continuous and may take on any value on the equation line. 
+We are all familiar with a linear function. In linear regression, we model the relationship between input $\textcolor{#38bdf8}{x}$ and target $\textcolor{#fb7185}{y}$ with a linear function such as $\textcolor{#fb7185}{y} = a\textcolor{#38bdf8}{x} + \textcolor{#c084fc}{b}$. When we choose linear regression, we are assuming a linear relationship between the data and the outcome we want to predict.
+
+Even with little background, a plot of a linear function already tells you what kind of questions linear regression can answer. The predicted outcome is continuous and can take on any value along the line.
 
 <div style="text-align: center; margin: 1.5rem 0;">
   <img src="/assets/img/posts/logistic_regression/linear_function.png" alt="Linear function visualization" style="max-width: 80%;">
 </div>
 
-So, what do we do if the relaionship we want to model is not linear? More specifically, what if we want to build a model that we know the outcome we want to predict only takes on 2 values, 0 and 1? 
+So what do we do if the relationship we want to model is not linear. More specifically, what if the outcome we want to predict only takes two values, 0 and 1.
 
-# Building Intuitition for Binary Classification
-If the outcome we want to predict only takes on 2 values, then these outcomes inherently exist in 2 camps. We can then also frame this question as what is called a binary classification question. 
+If the outcome only takes two values, then the outcomes naturally fall into two camps. This is a binary classification problem.
 
-In linear regression, we saw that if we want to model a linear relationship between data and outcome, we used a linear function. So the most intuitive solution is to perhaps search for a function that somehow let us predict 2 values of outcome of interest given the data?
+In linear regression, we can plug $\textcolor{#38bdf8}{x}$ into a linear equation and get a continuous prediction. For binary classification, we want a function that produces a value we can interpret as a class and, ideally, as a probability.
 
-Turns out, there is a function allows us to model this, may seem somewhat strange, relationship. And that is a logistic function. 
-<!-- For binary classification, we want model outputs that can be interpreted as probabilities.
-Logistic regression does this by mapping a real valued score to the interval  $$[0,1]$$  using the logistic sigmoid. -->
+There is a standard choice. We use the logistic function, also called the sigmoid.
 
-## Logistic Function
-### Visualization
+# Setup and notation
+
+We will use the following conventions throughout:
+
+- $\textcolor{#38bdf8}{x}_i \in \mathbb{R}^{d \times 1}$: feature vector for sample $i$
+- $\textcolor{#fb7185}{y}_i \in \{0,1\}$: binary label for sample $i$
+- $\textcolor{#93c5fd}{X} \in \mathbb{R}^{n \times d}$: design matrix, where row $i$ is $\textcolor{#38bdf8}{x}_i^\top$
+- $\textcolor{#4ade80}{w} \in \mathbb{R}^{d \times 1}$: weight vector, $\textcolor{#c084fc}{b} \in \mathbb{R}$: bias (intercept)
+- $\textcolor{#fbbf24}{z} \in \mathbb{R}^{n \times 1}$: score vector, $\textcolor{#2dd4bf}{p} \in (0,1)^{n \times 1}$: predicted probabilities
+- $\textcolor{#94a3b8}{\mathbf{1}}_n \in \mathbb{R}^{n \times 1}$: all ones vector
+
+# The sigmoid and probability interpretation
+
+## Visualization
+
 <div style="text-align: center; margin: 1.5rem 0;">
   <img src="/assets/img/posts/logistic_regression/sigmoid_function.png" alt="Sigmoid function visualization" style="max-width: 80%;">
 </div>
 
-Let's not worry about what a logistic function is, but just looking at what it looks like. By visualizing the logistic function, we see that the the y is mostly concentrated in 2 places, close to 0 and close to 1. Not only this function solved our above problem, but also provides a nice addition that the outcome is always bounded by 0 and 1. And this should sound really familiar as it is also one of the important definition of what a "probability" is. 
+Before worrying about the formula, look at the shape. The curve stays near 0 on the left and near 1 on the right, with a smooth transition in the middle. That already matches what we want for binary classification.
 
-So logistic function allows us to do two things: (i) be able to model the relationship of the input to the outcome that has 2 classes and (ii) be able to model the probability of the outcome as well. So in addition to asking, does the input belong to class 1 or class 2? We can ask what is the probability of the input belong to class 1. 
+There is another key benefit. The output is always between 0 and 1. That is the range of a probability, so we can interpret the output as the probability of class 1 instead of only making a hard 0 or 1 decision.
 
-### Understanding the Logistic Function
-Now we are getting closer to the case we want to crack, let's look into more of the logistic function. 
+## Definition
 
-The logistic function maps a scalar  $z \in \mathbb{R}$ to a value strictly between 0 and 1:
-
-$$
-\sigma(z) = \frac{1}{1 + \exp(-z)}.
-$$
-
-Yay, now when we input a sample $x$, we can use the logistic function to get a y right? Not quite, you may notice 2 small details that doesn't quite make sense here. 1 is that we specifically said that "the logistic function maps a **scalar** to a ...";  and 2 is that you notice that we wrote the input to the above logistic function as z instead of x. 
-
-The answer to these 2 questions are actually very much related. Let's start with problem 1: if logistic funciton only takes in a scalar, then what do we do when we have multi-variate input data?
-
-Well, how about we come up with a way to describe the vector of features only using 1 scalar, and define that descriptive sclar z. Here, both of the prbolems have been solved!
-
-
-### Big Picture of The Model
-
-At this point, we started with the problem we want to solve: find a way to predict the outcome $y$ given some data $x$ knowing that it is a binary classification. We first identified that the logistic function can help us model this relationship because of its unique S shape. We then realized, by visualizin the fuction, that not only the shape of the function means that most of the y value will sit in the extreme 2 sides of the funciton, but the y is also bounded between 0 and 1, which is one of the exact definitions of probabilities. So not only can we know if one datapoint belong to class 1 or class 2, we can also learn that if this data is 90% of class1 or 70% chance of beloning to class 1.  
-
-After that, by investigating the mathematical form of the logistic function, we realized that if we want a scalar output form the funciton, which we do because if datapoint should only have one number represernting the probability of it belonging to a class, we can only input one scalar as the input. So, when we deal with multi-variate datasets, we have to find some work around to summarize the informaion of many features into one number. 
-
-Before we build the full multivariate model, it helps to look at what the sigmoid gives us:
-
-- The output never goes below 0 and never goes above 1, which matches the range of a probability.
-- Logistic regression is used when we want to learn probabilities for classification.
-- It takes a scalar as an input and outputs a scalar that we interpret as probability.
-- The goal is to model the probability that a sample belongs to a particular class:
+The logistic function maps a scalar $\textcolor{#fbbf24}{z} \in \mathbb{R}$ to a value strictly between 0 and 1:
 
 $$
-P(y_i = y \mid x_i), \quad \text{for each class label } y.
+\sigma(\textcolor{#fbbf24}{z}) = \frac{1}{1 + \exp(-\textcolor{#fbbf24}{z})}.
 $$
 
-In the binary case, we often write  $$p_i = P(y_i = 1 \mid x_i)$$  and  $$1 - p_i = P(y_i = 0 \mid x_i)$$ .
+For any finite $\textcolor{#fbbf24}{z}$, $\sigma(\textcolor{#fbbf24}{z})\in(0,1)$. It only approaches 0 or 1 in the limits $\textcolor{#fbbf24}{z}\to-\infty$ and $\textcolor{#fbbf24}{z}\to+\infty$.
 
+At this point you might think we can input a sample $\textcolor{#38bdf8}{x}$ into $\sigma$ and get a probability out. Not quite. The sigmoid takes a scalar input $\textcolor{#fbbf24}{z}$, not a feature vector $\textcolor{#38bdf8}{x}$. That is why we introduce a score $\textcolor{#fbbf24}{z}$. The score compresses a multivariate feature vector into a single real number.
 
-# Building Logistic Regression Mathmatically
-## Defining the score, $z$.
-We know that the logistic function is perfect to model the relationship we are interested in, given input data $x$, predict the probability of $x$ beining in class0 and class1. In linear regression, we are able to plug in the data directly into the linear equation. But we can't do that in logistic regression when we have multi-variate data. We have to first figure out how to calcualte that one scalar, also called the score, for each datapoint $x_i$. 
+We started with a simple goal: predict an outcome $\textcolor{#fb7185}{y}$ from data $\textcolor{#38bdf8}{x}$, where $\textcolor{#fb7185}{y}$ is binary. The sigmoid helps because it maps a real number to a value we can interpret as a probability. The missing piece is how to turn a feature vector into the scalar score that the sigmoid expects.
 
-Turns out, the score is fairly simple to calcualte, we can use the linear equation here.  
+- The output is always between 0 and 1, which matches the range of a probability.
+- Logistic regression is used when we want probabilities for classification.
+- It takes a scalar input and outputs a scalar that we interpret as $P(\textcolor{#fb7185}{y}=1 \mid \textcolor{#38bdf8}{x})$.
+- The goal is to model the conditional probability of a class given the input.
 
-Let each $x_i$ have $d$ features,
-$$
-z_i = w^\top x_i + b
-$$
-
-$$
-x_i \in \mathbb{R}^d, \quad w \in \mathbb{R}^d, \quad b \in \mathbb{R}.
-$$
-
-Logistic regression defines this score to be calcualted using a linear function and the model defines the score, $z$, to be interpreted as the log-odds ratio. Log-odds is defined as the following: for any probability p of class 1, we get
-$$
-log-odds = log (\frac{p(x)}{1-p(x)}).
-$$
-If $p = 0.5$, then log-odds $= 0$.<br>
-If $p > 0.5$, then log-odds $> 0$.<br>
-If $p < 0.5$, then log-odds $< 0$.<br>
-
-In other words, we can view the log-odds as the "confidence scale" of if the data $x$ belong to class 1. Now, in logistic regression, we know we cauclate the score using the linear funciton, so we can combine the expressions and get:
-$$
-\text{log-odds} = log (\frac{p(x)}{1-p(x)}) = w^\top x_i + b
-$$
-
-Intuitively, we are not combining the features in a "magical" way, we are asking how can we find the best parameters $w$ to build the most logistic regression model that understand how much each of the $d$ features contribute to the "confidence scale". We then simply use the logistic function to re-scale the log-odds score in terms of probability:
+In the binary case, we usually write
 
 $$
-p_i = P(y_i = 1 \mid x_i) = \sigma(z_i).
+\textcolor{#2dd4bf}{p}_i = P(\textcolor{#fb7185}{y}_i = 1 \mid \textcolor{#38bdf8}{x}_i),
+\qquad
+1 - \textcolor{#2dd4bf}{p}_i = P(\textcolor{#fb7185}{y}_i = 0 \mid \textcolor{#38bdf8}{x}_i).
 $$
 
-(Bridge section here for non-linear binary classification?)
-## Establish Logstic Regression Model
-We can now establish the full model in a multivariate form. For  $n$  samples,
+<details markdown="1">
+<summary>Bridge: From probability to a decision</summary>
+Logistic regression gives probabilities. To turn probabilities into predicted labels, we choose a threshold $\textcolor{#f472b6}{\tau}$ and predict class 1 when the probability is large enough:
+
 $$
-p = \sigma(z)
+\hat{\textcolor{#fb7185}{y}}_i = \textcolor{#94a3b8}{\mathbf{1}}[\textcolor{#2dd4bf}{p}_i \ge \textcolor{#f472b6}{\tau}].
+$$
+
+A common default is $\textcolor{#f472b6}{\tau} = 0.5$, but it is often adjusted when classes are imbalanced or when false positives and false negatives have different costs.
+</details>
+
+<details markdown="1">
+<summary>Bridge: What is a logit</summary>
+Why it matters now: we are about to define a score $\textcolor{#fbbf24}{z}$ and interpret it.
+
+One key fact is that the **logit** is the log odds:
+$$
+\operatorname{logit}(\textcolor{#2dd4bf}{p}) = \log\frac{\textcolor{#2dd4bf}{p}}{1-\textcolor{#2dd4bf}{p}}.
+$$
+
+In logistic regression, the score $\textcolor{#fbbf24}{z}$ is the logit of the class-1 probability: $\textcolor{#fbbf24}{z} = \operatorname{logit}(\textcolor{#2dd4bf}{p})$.
+
+In many ML contexts, the word **logits** refers to raw real-valued score(s) before applying sigmoid or softmax (binary: a scalar $\textcolor{#fbbf24}{z}$; multiclass: a vector in $\mathbb{R}^K$).
+
+Pointer: this logit link is the core connection to generalized linear models (GLMs), if you add a deeper dive later.
+</details>
+
+<!-- ###################################### Softmax Bridge ################################################## -->
+<details markdown="1">
+<summary>Bridge: Softmax as the multiclass sigmoid</summary>
+This section is meant for pattern recognition and terminology alignment.
+
+Sigmoid is perfect for binary classification. Many real problems involve more than two classes. Softmax extends the same idea to handle $K$ classes.
+
+### Definition
+
+For a vector of scores for one sample $\textcolor{#fbbf24}{z} = [\textcolor{#fbbf24}{z}_1, \textcolor{#fbbf24}{z}_2, \ldots, \textcolor{#fbbf24}{z}_K]$, softmax converts them into a probability distribution:
+
+$$
+\text{softmax}(\textcolor{#fbbf24}{z})_j = \frac{\exp(\textcolor{#fbbf24}{z}_j)}{\sum_{k=1}^K \exp(\textcolor{#fbbf24}{z}_k)}.
+$$
+
+In binary logistic regression, we summarize a datapoint with one scalar score. In multiclass classification, we summarize a datapoint with $K$ scores and softmax maps them into $K$ probabilities.
+
+### Key properties
+
+- Outputs sum to 1: $\sum_{j=1}^K \text{softmax}(\textcolor{#fbbf24}{z})_j = 1$
+- Each output is between 0 and 1
+- Differentiable, so we can use gradient based optimization
+
+### Connection to the logistic function
+
+When $K = 2$, softmax reduces to sigmoid. Softmax is invariant to adding the same constant to all logits, so we can set logits to $[0, \textcolor{#fbbf24}{z}]$ without loss of generality. Then
+
+$$
+\text{softmax}([0,\textcolor{#fbbf24}{z}])_1 = \frac{\exp(\textcolor{#fbbf24}{z})}{\exp(0)+\exp(\textcolor{#fbbf24}{z})} = \frac{1}{1+\exp(-\textcolor{#fbbf24}{z})} = \sigma(\textcolor{#fbbf24}{z}).
 $$
 
 $$
-z = Xw + b
+\text{softmax}([0,\textcolor{#fbbf24}{z}])_0 = \frac{\exp(0)}{\exp(0)+\exp(\textcolor{#fbbf24}{z})} = 1-\sigma(\textcolor{#fbbf24}{z}) = \sigma(-\textcolor{#fbbf24}{z}).
+$$
+
+So binary logistic regression is the two class softmax model, written with one scalar logit.
+</details>
+<!-- ###################################### Softmax Bridge ################################################## -->
+
+# The score $\textcolor{#fbbf24}{z}$ and log odds
+
+We want $\textcolor{#2dd4bf}{p}_i = P(\textcolor{#fb7185}{y}_i=1 \mid \textcolor{#38bdf8}{x}_i)$. The sigmoid can produce that probability, but only if we provide a scalar score $\textcolor{#fbbf24}{z}_i$. So we need a way to compute $\textcolor{#fbbf24}{z}_i$ from a feature vector $\textcolor{#38bdf8}{x}_i$.
+
+The score is computed with a linear function. For a feature vector with $d$ features,
+
+$$
+\textcolor{#fbbf24}{z}_i = \textcolor{#4ade80}{w}^\top \textcolor{#38bdf8}{x}_i + \textcolor{#c084fc}{b}
 $$
 
 $$
-X \in \mathbb{R}^{n \times d},\;
-w \in \mathbb{R}^{d \times 1},\;
-b \in \mathbb{R}^{d \times 1},\;
-z \in \mathbb{R}^{n \times 1},\;
-y \in \mathbb{R}^{n \times 1},\;
-p \in \mathbb{R}^{n \times 1}.
+\textcolor{#38bdf8}{x}_i \in \mathbb{R}^{d \times 1}, \quad \textcolor{#4ade80}{w} \in \mathbb{R}^{d \times 1}, \quad \textcolor{#c084fc}{b} \in \mathbb{R}.
+$$
+
+Logistic regression interprets this score as a log odds value. For a probability $\textcolor{#2dd4bf}{p}$ of class 1, the log odds is
+
+$$
+\log\text{-odds} = \log\left(\frac{\textcolor{#2dd4bf}{p}}{1-\textcolor{#2dd4bf}{p}}\right).
+$$
+
+If $\textcolor{#2dd4bf}{p} = 0.5$, then log odds $= 0$.  
+If $\textcolor{#2dd4bf}{p} > 0.5$, then log odds $> 0$.  
+If $\textcolor{#2dd4bf}{p} < 0.5$, then log odds $< 0$.
+
+So log odds acts like a confidence scale for class 1. Logistic regression sets this confidence scale to be linear in the features:
+
+$$
+\log\left(\frac{\textcolor{#2dd4bf}{p}_i}{1-\textcolor{#2dd4bf}{p}_i}\right) = \textcolor{#4ade80}{w}^\top \textcolor{#38bdf8}{x}_i + \textcolor{#c084fc}{b}.
+$$
+
+Then we map the score back into probability space using the sigmoid:
+
+$$
+\textcolor{#2dd4bf}{p}_i = P(\textcolor{#fb7185}{y}_i = 1 \mid \textcolor{#38bdf8}{x}_i) = \sigma(\textcolor{#fbbf24}{z}_i).
+$$
+
+<!-- Bridge placeholder: non-linear binary classification -->
+
+# The full model in matrix form
+
+For $n$ samples, stack the features into a data matrix $\textcolor{#93c5fd}{X}$ and collect scores into a vector $\textcolor{#fbbf24}{z}$:
+
+$$
+\textcolor{#fbbf24}{z} = \textcolor{#93c5fd}{X}\textcolor{#4ade80}{w} + \textcolor{#c084fc}{b}\textcolor{#94a3b8}{\mathbf{1}}_n,
+\qquad
+\textcolor{#2dd4bf}{p} = \sigma(\textcolor{#fbbf24}{z}).
+$$
+
+$$
+\textcolor{#93c5fd}{X} \in \mathbb{R}^{n \times d},\;
+\textcolor{#4ade80}{w} \in \mathbb{R}^{d \times 1},\;
+\textcolor{#c084fc}{b} \in \mathbb{R},\;
+\textcolor{#fbbf24}{z} \in \mathbb{R}^{n \times 1},\;
+\textcolor{#fb7185}{y} \in \{0,1\}^{n \times 1},\;
+\textcolor{#2dd4bf}{p} \in (0,1)^{n \times 1}.
 $$
 
 <!-- ###################################### Wrapping Bias in Features ################################################## -->
 <details markdown="1">
-<summary>Bridge: Warpping bias in input matrix</summary>
-(Remember, the "Bridge" section is not meant as a full deep dive or tutorial. It is meant for pattern recognition to organize and connect all the loose terminology and concepts that are closely connected and/or similar.)
+<summary>Bridge: Wrapping bias into the input matrix</summary>
+This is a small algebraic trick that removes the separate bias term.
 
-Sometimes, you will see a simple mathmeticle trick to make calculations easier and that is wrapping the bias inside the input matrix. 
-In above section, we established the following dimensions for the data and the parameters of our logistic regression model:
+Add a constant feature as the first column of the data matrix:
 $$
-X \in \mathbb{R}^{n \times d},\;
-w \in \mathbb{R}^{d \times 1},\;
-z \in \mathbb{R}^{n \times 1},\;
-y \in \mathbb{R}^{n \times 1},\;
-p \in \mathbb{R}^{n \times 1}.
+\tilde{\textcolor{#93c5fd}{X}} = \begin{bmatrix}\textcolor{#94a3b8}{\mathbf{1}}_n & \textcolor{#93c5fd}{X}\end{bmatrix}\in\mathbb{R}^{n\times(d+1)}.
 $$
 
+Stack the bias into the weight vector:
+$$
+\tilde{\textcolor{#4ade80}{w}}=\begin{bmatrix}\textcolor{#c084fc}{b}\\ \textcolor{#4ade80}{w}\end{bmatrix}\in\mathbb{R}^{(d+1)\times 1}.
+$$
 
-where  $b_1 \in \mathbb{R}^{n \times 1}$  is an all ones vector and  $\sigma$  is applied elementwise.
-
+Then the scores are:
+$$
+\textcolor{#fbbf24}{z}=\tilde{\textcolor{#93c5fd}{X}}\tilde{\textcolor{#4ade80}{w}}.
+$$
 </details>
-<!-- ###################################### Softmax Bridge ################################################## -->
+<!-- ###################################### Wrapping Bias in Features ################################################## -->
 
+# Likelihood and binary cross entropy loss
 
-## Likelihood and loss
+To optimize any model, we need an objective. For logistic regression, we want predicted probabilities that match the observed labels.
 
-Assume  $y_i \in {0,1}$  and  $p_i = P(y_i = 1 \mid x_i)$ .
-Then
+Let $\textcolor{#fb7185}{y}_i \in \{0,1\}$ and $\textcolor{#2dd4bf}{p}_i = P(\textcolor{#fb7185}{y}_i = 1 \mid \textcolor{#38bdf8}{x}_i)$. Then
 
 $$
-P(y_i = 1 \mid x_i) = p_i,
+P(\textcolor{#fb7185}{y}_i = 1 \mid \textcolor{#38bdf8}{x}_i) = \textcolor{#2dd4bf}{p}_i,
 \qquad
-P(y_i = 0 \mid x_i) = 1 - p_i.
+P(\textcolor{#fb7185}{y}_i = 0 \mid \textcolor{#38bdf8}{x}_i) = 1 - \textcolor{#2dd4bf}{p}_i.
 $$
 
-This can be written as a Bernoulli likelihood:
+This can be written as a Bernoulli likelihood, which measures how likely the model is to assign the observed label:
 
 $$
-P(y_i \mid x_i) = p_i^{y_i} (1-p_i)^{1-y_i}.
+P(\textcolor{#fb7185}{y}_i \mid \textcolor{#38bdf8}{x}_i) = \textcolor{#2dd4bf}{p}_i^{\textcolor{#fb7185}{y}_i} (1-\textcolor{#2dd4bf}{p}_i)^{1-\textcolor{#fb7185}{y}_i}.
 $$
 
-Maximizing likelihood is equivalent to minimizing the negative log likelihood.
-The per sample loss is
+We want $P(\textcolor{#fb7185}{y}_i \mid \textcolor{#38bdf8}{x}_i)$ to be as high as possible. Equivalently, we minimize $-\log P(\textcolor{#fb7185}{y}_i \mid \textcolor{#38bdf8}{x}_i)$. Define the per sample loss:
 
 $$
+\begin{align*}
 \ell_i
-= -\log P(y_i \mid x_i)
-= -\Bigl[y_i \log(p_i) + (1-y_i)\log(1-p_i)\Bigr].
+&= -\log P(\textcolor{#fb7185}{y}_i \mid \textcolor{#38bdf8}{x}_i) \\[0.75em]
+&= -\log \left(\textcolor{#2dd4bf}{p}_i^{\textcolor{#fb7185}{y}_i} (1-\textcolor{#2dd4bf}{p}_i)^{1-\textcolor{#fb7185}{y}_i}\right) \\[0.75em]
+&= -\left(\textcolor{#fb7185}{y}_i \log (\textcolor{#2dd4bf}{p}_i) + (1-\textcolor{#fb7185}{y}_i)\log(1-\textcolor{#2dd4bf}{p}_i)\right) \\[0.75em]
+&= -\textcolor{#fb7185}{y}_i \log(\textcolor{#2dd4bf}{p}_i) - (1-\textcolor{#fb7185}{y}_i)\log(1-\textcolor{#2dd4bf}{p}_i).
+\end{align*}
 $$
 
-The average loss over  $$n$$  samples is
+The average loss over $n$ samples is
 
 $$
 L = \frac{1}{n}\sum_{i=1}^n \ell_i.
@@ -244,168 +320,112 @@ $$
 
 This is also called binary cross entropy.
 
-## Gradients
+<details markdown="1">
+<summary>Bridge: Measuring entropy as loss</summary>
+For Bernoulli targets, minimizing the negative log likelihood is the same as minimizing binary cross entropy.
 
-We want the gradients with respect to  $$w$$  and  $$b$$  so we can apply gradient based optimization.
-The dependencies are
+In ML language, entropy is a measure of uncertainty. Cross entropy measures how misaligned the predicted distribution is with the observed labels.
+</details>
+
+# Gradients of the loss
+
+Logistic regression does not have a closed form solution in general, so we usually use an iterative solver such as gradient descent.
+
+**Dependency chain**
 
 $$
-w,b \to z_i = w^\top x_i + b \to p_i = \sigma(z_i) \to L.
+\textcolor{#4ade80}{w}, \textcolor{#c084fc}{b} \to \textcolor{#fbbf24}{z}_i = \textcolor{#4ade80}{w}^\top \textcolor{#38bdf8}{x}_i + \textcolor{#c084fc}{b} \to \textcolor{#2dd4bf}{p}_i = \sigma(\textcolor{#fbbf24}{z}_i) \to L.
 $$
 
-We use the chain rule:
+We compute gradients using the chain rule:
 
 $$
-\frac{\partial L}{\partial w}
-= \sum_{i=1}^n \frac{\partial L}{\partial p_i}\frac{\partial p_i}{\partial z_i}\frac{\partial z_i}{\partial w},
+\frac{\partial L}{\partial \textcolor{#4ade80}{w}}
+= \sum_{i=1}^n \frac{\partial L}{\partial \textcolor{#fbbf24}{z}_i}\frac{\partial \textcolor{#fbbf24}{z}_i}{\partial \textcolor{#4ade80}{w}},
 \qquad
-\frac{\partial L}{\partial b}
-= \sum_{i=1}^n \frac{\partial L}{\partial p_i}\frac{\partial p_i}{\partial z_i}\frac{\partial z_i}{\partial b}.
+\frac{\partial L}{\partial \textcolor{#c084fc}{b}}
+= \sum_{i=1}^n \frac{\partial L}{\partial \textcolor{#fbbf24}{z}_i}\frac{\partial \textcolor{#fbbf24}{z}_i}{\partial \textcolor{#c084fc}{b}}.
 $$
 
-### Derivative of the sigmoid
+**Three derivatives**
 
-For  $$p_i = \sigma(z_i)$$ ,
-
-$$
-\frac{\partial p_i}{\partial z_i} = p_i(1-p_i).
-$$
-
-### Derivative of the loss with respect to probability
-
-From
+From $\textcolor{#fbbf24}{z}_i = \textcolor{#4ade80}{w}^\top \textcolor{#38bdf8}{x}_i + \textcolor{#c084fc}{b}$,
 
 $$
-\ell_i = -\Bigl[y_i \log(p_i) + (1-y_i)\log(1-p_i)\Bigr],
-$$
-
-$$
-\frac{\partial \ell_i}{\partial p_i}
-= \frac{1-y_i}{1-p_i} - \frac{y_i}{p_i}.
-$$
-
-Since  $$L = \frac{1}{n}\sum_i \ell_i$$ , we have
-
-$$
-\frac{\partial L}{\partial p_i} = \frac{1}{n}\left(\frac{1-y_i}{1-p_i} - \frac{y_i}{p_i}\right).
-$$
-
-### Derivative with respect to the score
-
-Combining the previous results yields the standard simplification:
-
-$$
-\frac{\partial L}{\partial z_i} = \frac{1}{n}(p_i - y_i).
-$$
-
-### Gradients for parameters
-
-Since  $$z_i = w^\top x_i + b$$ ,
-
-$$
-\frac{\partial z_i}{\partial w} = x_i,
+\frac{\partial \textcolor{#fbbf24}{z}_i}{\partial \textcolor{#4ade80}{w}} = \textcolor{#38bdf8}{x}_i,
 \qquad
-\frac{\partial z_i}{\partial b} = 1.
+\frac{\partial \textcolor{#fbbf24}{z}_i}{\partial \textcolor{#c084fc}{b}} = 1.
 $$
 
-Therefore,
+Since $\textcolor{#2dd4bf}{p}_i = \sigma(\textcolor{#fbbf24}{z}_i)$,
 
 $$
-\frac{\partial L}{\partial w}
-= \frac{1}{n}\sum_{i=1}^n (p_i - y_i)x_i
-= \frac{1}{n}X^\top(p-y),
+\frac{\partial \textcolor{#2dd4bf}{p}_i}{\partial \textcolor{#fbbf24}{z}_i} = \textcolor{#2dd4bf}{p}_i(1-\textcolor{#2dd4bf}{p}_i).
 $$
 
-and
+Recall
 
 $$
-\frac{\partial L}{\partial b}
-= \frac{1}{n}\sum_{i=1}^n (p_i - y_i).
-$$
-
-## Gradient descent updates
-
-With learning rate  $$\eta > 0$$ , gradient descent updates are
-
-$$
-w \leftarrow w - \eta \cdot \frac{1}{n}X^\top(p-y),
-\qquad
-b \leftarrow b - \eta \cdot \frac{1}{n}\sum_{i=1}^n (p_i - y_i).
-$$
-
-## Softmax and logits
-
-Sigmoid maps a scalar score to a single probability.
-For multiclass classification with  $$k$$  classes, softmax maps a vector of scores to a probability distribution that sums to 1.
-Given scores  $$s \in \mathbb{R}^k$$ ,
-
-$$
-\mathrm{softmax}(s)_j = \frac{\exp(s_j)}{\sum_{t=1}^k \exp(s_t)}.
-$$
-
-The term logits refers to the unnormalized scores before applying sigmoid or softmax.
-
-## Bias as an extra feature
-
-It is common to fold the bias into the weight vector by augmenting the data with a constant feature.
-Define
-
-$$
-\tilde{x}_i = \begin{bmatrix} 1 \\ x_i \end{bmatrix} \in \mathbb{R}^{d+1},
-\qquad
-\tilde{w} = \begin{bmatrix} b \\ w \end{bmatrix} \in \mathbb{R}^{d+1}.
+\ell_i = -\left(\textcolor{#fb7185}{y}_i \log(\textcolor{#2dd4bf}{p}_i) + (1-\textcolor{#fb7185}{y}_i)\log(1-\textcolor{#2dd4bf}{p}_i)\right).
 $$
 
 Then
 
 $$
-z_i = \tilde{w}^\top \tilde{x}_i,
+\frac{\partial \ell_i}{\partial \textcolor{#2dd4bf}{p}_i}
+= \frac{1-\textcolor{#fb7185}{y}_i}{1-\textcolor{#2dd4bf}{p}_i} - \frac{\textcolor{#fb7185}{y}_i}{\textcolor{#2dd4bf}{p}_i}.
 $$
 
-so the model can be written without a separate bias term.
-
-## Practical notes
-
-- This note describes the binary case where  $$y \in \\{0,1\\}$$ .
-- For numerical stability, implementations often compute the loss using stable transformations rather than directly evaluating  $$\log(p)$$  and  $$\log(1-p)$$  when  $$p$$  is extremely close to 0 or 1.
-
-
-<!-- ###################################### Softmax Bridge ################################################## -->
-<details markdown="1">
-<summary>Bridge: Softmax as the multiclass sigmoid</summary>
-(Remember, the "Bridge" section is not meant as a full deep dive or tutorial. It is meant for pattern recognition to organize and connect all the loose terminology and concepts that are closely connected and/or similar.)
-
-If you have seen softmax functions before, you may have started to recognize that softmax looks familiar with the logistic function and performs a somewhat related task. Indeed, while the sigmoid function is perfect for binary classification (two classes), real-world problems often involve multiple classes. The softmax function extends this concept to handle $K$ classes.
-
-### Definition
-For a vector of scores that describe one sample $$z = [z_1, z_2, \ldots, z_K]$$ , the softmax function converts them into a probability distribution:
+Since $L = \frac{1}{n}\sum_{i=1}^n \ell_i$, we have
 
 $$
-\text{softmax}(z_j) = \frac{\exp(z_j)}{\sum_{k=1}^K \exp(z_k)}
+\frac{\partial L}{\partial \textcolor{#2dd4bf}{p}_i}
+= \frac{1}{n}\frac{\partial \ell_i}{\partial \textcolor{#2dd4bf}{p}_i}.
 $$
 
-In other words, instead of using 1 scalar to "summarize and describe" a multivariate datapoint $x_i$ in logistic regression. We summarize the datapoint by using $K$ number of scores and then learn the probability of $x_i$ belong to each of the $K$ classes. 
+**Collapse to $\textcolor{#2dd4bf}{p}_i - \textcolor{#fb7185}{y}_i$**
 
-### Key Properties
-- **Outputs sum to 1**: $$\sum_{j=1}^K \text{softmax}(z_j) = 1$$
-- **Each output is between 0 and 1**: Perfect for representing probabilities
-- **Differentiable**: Enables gradient-based optimization
-
-### Connection to the Logistic Function
-
-When $K = 2$ (binary case), softmax reduces to the sigmoid function. The two functions are fundamentally related, with sigmoid being a special case of softmax.
-We first review the key realization for binary clasification, we only need to know $p(y = 0 | x)$ and we get $p(y = 1 | x)$ for free since the sum of both probabilities has to be 1.
+A standard simplification gives
 
 $$
-\begin{align*}
-\text{softmax}(z_0) &= \frac{\exp(z_0)}{\exp(z_0) + \exp(z_1)} \\[1em]
-&= \frac{\frac{\exp(z_0)}{\exp(z_0)}}{\frac{\exp(z_0)}{\exp(z_0)} + \frac{\exp(z_1)}{\exp(z_0)}} \\[1em]
-&= \frac{1}{1 + \exp(z_1 - z_0)}
-\end{align*}
+\frac{\partial \ell_i}{\partial \textcolor{#fbbf24}{z}_i} = \textcolor{#2dd4bf}{p}_i - \textcolor{#fb7185}{y}_i.
 $$
 
-Intuitively, we should learn 2 scores for logistic regression given the introduction we gave about softmax above. However, remember that we get $p(y = 1 | x)$ for free, so we only need one scalar score for $x_i$ and learn the probability of $p(y = 0 | x)$. Hence, we can se $z_1 = 0$ and get:
-$$\frac{1}{1+ exp(-z_0)}$$
+Therefore
 
-</details>
-<!-- ###################################### Softmax Bridge ################################################## -->
+$$
+\frac{\partial L}{\partial \textcolor{#fbbf24}{z}_i} = \frac{1}{n}(\textcolor{#2dd4bf}{p}_i - \textcolor{#fb7185}{y}_i).
+$$
+
+**Final vectorized gradients**
+
+Combine the pieces:
+
+$$
+\nabla_w L = \frac{1}{n}\sum_{i=1}^n (\textcolor{#2dd4bf}{p}_i - \textcolor{#fb7185}{y}_i)\textcolor{#38bdf8}{x}_i,
+\qquad
+\frac{\partial L}{\partial \textcolor{#c084fc}{b}} = \frac{1}{n}\sum_{i=1}^n (\textcolor{#2dd4bf}{p}_i - \textcolor{#fb7185}{y}_i).
+$$
+
+In matrix form,
+
+$$
+\nabla_w L = \frac{1}{n}\textcolor{#93c5fd}{X}^\top(\textcolor{#2dd4bf}{p}-\textcolor{#fb7185}{y}),
+\qquad
+\frac{\partial L}{\partial \textcolor{#c084fc}{b}} = \frac{1}{n}\textcolor{#94a3b8}{\mathbf{1}}_n^\top(\textcolor{#2dd4bf}{p}-\textcolor{#fb7185}{y}).
+$$
+
+# Gradient descent updates
+
+The gradients tell us the local slope of the loss with respect to the parameters. Gradient descent updates the parameters by moving in the negative gradient direction.
+
+With learning rate $\textcolor{#f472b6}{\eta} > 0$, the updates are:
+
+$$
+\textcolor{#4ade80}{w} \leftarrow \textcolor{#4ade80}{w} - \textcolor{#f472b6}{\eta} \cdot \frac{1}{n}\textcolor{#93c5fd}{X}^\top(\textcolor{#2dd4bf}{p}-\textcolor{#fb7185}{y}),
+\qquad
+\textcolor{#c084fc}{b} \leftarrow \textcolor{#c084fc}{b} - \textcolor{#f472b6}{\eta} \cdot \frac{1}{n}\sum_{i=1}^n (\textcolor{#2dd4bf}{p}_i - \textcolor{#fb7185}{y}_i).
+$$
+
+
+
