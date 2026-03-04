@@ -71,7 +71,7 @@ details[open] summary {
 
 # Content
 <div class="box">
-  <div class="box-title">Roadmap</div>
+  <div class="box-title"></div>
 
   <strong>1. Foundations</strong>
   <ul>
@@ -84,9 +84,9 @@ details[open] summary {
     <li><a href="#the-sigmoid-and-probability-interpretation">The sigmoid and probability interpretation</a></li>
     <li>Optional bridges
       <ul>
-        <li><a href="#bridge-from-probability-to-a-decision">From probability to a decision</a></li>
-        <li><a href="#bridge-what-is-a-logit">What is a logit</a></li>
-        <li><a href="#bridge-softmax-as-the-multiclass-sigmoid">Softmax as the multiclass sigmoid</a></li>
+        <li>From probability to a decision</li>
+        <li>What is a logit</li>
+        <li>Softmax as the multiclass sigmoid</li>
       </ul>
     </li>
   </ul>
@@ -97,7 +97,7 @@ details[open] summary {
     <li><a href="#the-full-model-in-matrix-form">The full model in matrix form</a></li>
     <li>Optional bridge
       <ul>
-        <li><a href="#bridge-wrapping-bias-into-the-input-matrix">Wrapping bias into the input matrix</a></li>
+        <li>Wrapping bias into the input matrix</li>
       </ul>
     </li>
   </ul>
@@ -107,7 +107,7 @@ details[open] summary {
     <li><a href="#likelihood-and-binary-cross-entropy-loss">Likelihood and binary cross entropy loss</a></li>
     <li>Optional bridge
       <ul>
-        <li><a href="#bridge-measuring-entropy-as-loss">Measuring entropy as loss</a></li>
+        <li>Measuring entropy as loss</li>
       </ul>
     </li>
     <li><a href="#gradients-of-the-loss">Gradients of the loss</a></li>
