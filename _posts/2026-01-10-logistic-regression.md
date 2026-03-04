@@ -4,9 +4,12 @@ title: "Logistic Regression"
 subtitle: "A Mathematical Introduction to Binary Classification"
 tags: [ML, statistics, classification, supervised learning]
 mathjax: true
-ext-js:
-  - href: "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"
 ---
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
 <pre class="mermaid">
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#1e293b', 'primaryTextColor': '#e2e8f0', 'primaryBorderColor': '#60a5fa', 'lineColor': '#60a5fa', 'background': '#0f172a', 'nodeBorder': '#60a5fa', 'clusterBkg': '#162032', 'edgeLabelBackground': '#0f172a', 'fontFamily': 'sans-serif'}}}%%
