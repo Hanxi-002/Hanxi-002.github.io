@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Logistic Regression"
-subtitle: "A Mathematical Introduction to Binary Classification"
+title: "Zero to Hero: Logistic Regression"
+subtitle: ""
 tags: [ML, statistics, classification, supervised learning]
 mathjax: true
 ---
@@ -12,7 +12,7 @@ mathjax: true
 </script>
 
 <pre class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#1e293b', 'primaryTextColor': '#e2e8f0', 'primaryBorderColor': '#60a5fa', 'lineColor': '#60a5fa', 'background': '#0f172a', 'nodeBorder': '#60a5fa', 'clusterBkg': '#162032', 'edgeLabelBackground': '#0f172a', 'fontFamily': 'sans-serif'}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#1e293b', 'primaryTextColor': '#e2e8f0', 'primaryBorderColor': '#60a5fa', 'lineColor': '#60a5fa', 'background': '#0f172a', 'nodeBorder': '#60a5fa', 'clusterBkg': '#162032', 'edgeLabelBackground': '#0f172a', 'fontFamily': 'sans-serif', 'fontSize': '16px'}, 'flowchart': {'useMaxWidth': false, 'padding': 20}}}%%
 flowchart TD
     A["Motivation and the binary classification goal"] --> B["Setup and notation"]
     B --> C["The sigmoid and probability interpretation"]
@@ -43,6 +43,17 @@ flowchart TD
   --ocre60: rgba(96, 165, 250, 0.3);
   --bg-black5: #1e293b;
   --bg-ocre10: #162032;
+}
+
+/* Mermaid diagram container */
+.mermaid {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+.mermaid svg {
+  min-width: 700px;
+  display: block;
+  margin: 0 auto;
 }
 
 /* Headings */
