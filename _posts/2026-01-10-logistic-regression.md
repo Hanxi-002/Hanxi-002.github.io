@@ -2,9 +2,37 @@
 layout: post
 title: "Logistic Regression"
 subtitle: "A Mathematical Introduction to Binary Classification"
-tags: [ML, statistics, classification]
+tags: [ML, statistics, classification, supervised learning]
 mathjax: true
+ext-js:
+  - href: "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"
 ---
+
+<pre class="mermaid">
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#1e293b', 'primaryTextColor': '#e2e8f0', 'primaryBorderColor': '#60a5fa', 'lineColor': '#60a5fa', 'background': '#0f172a', 'nodeBorder': '#60a5fa', 'clusterBkg': '#162032', 'edgeLabelBackground': '#0f172a', 'fontFamily': 'sans-serif'}}}%%
+flowchart TD
+    A["Motivation and the binary classification goal"] --> B["Setup and notation"]
+    B --> C["The sigmoid and probability interpretation"]
+    C --> D["The score z and log odds"]
+    D --> E["The full model in matrix form"]
+    E --> F["Likelihood and binary cross entropy loss"]
+    F --> G["Gradients of the loss"]
+    G --> H["Gradient descent updates"]
+
+    C --> I["Bridge: From probability to a decision"]
+    C --> J["Bridge: What is a logit"]
+    C --> K["Bridge: Softmax as the multiclass sigmoid"]
+
+    E --> L["Bridge: Wrapping bias into the input matrix"]
+
+    F --> M["Bridge: Measuring entropy as loss"]
+
+    class I,J,K,L,M bridge;
+    class A,B,C,D,E,F,G,H core;
+
+    classDef core fill:#1e293b,stroke:#60a5fa,color:#e2e8f0,stroke-width:2px;
+    classDef bridge fill:#162032,stroke:#f59e0b,color:#fde68a,stroke-width:2px,stroke-dasharray: 6 4;
+</pre>
 
 <style>
 :root {
@@ -139,8 +167,8 @@ $$
 
 <details markdown="1">
 <summary>Bridge: From probability to a decision</summary>
-Logistic regression gives probabilities. To turn probabilities into predicted labels, we choose a threshold $\textcolor{#f472b6}{\tau}$ and predict class 1 when the probability is large enough:
-
+Logistic regression gives probabilities. To turn probabilities into predicted labels, we choose a threshold $\textcolor{#f472b6}{\tau}$
+and predict class 1 when the probability is large enough:
 $$
 \hat{\textcolor{#fb7185}{y}}_i = \textcolor{#94a3b8}{\mathbf{1}}[\textcolor{#2dd4bf}{p}_i \ge \textcolor{#f472b6}{\tau}].
 $$
@@ -151,6 +179,7 @@ A common default is $\textcolor{#f472b6}{\tau} = 0.5$, but it is often adjusted 
 <details markdown="1">
 <summary>Bridge: What is a logit</summary>
 One key fact is that the **logit** is the log odds:
+
 $$
 \operatorname{logit}(\textcolor{#2dd4bf}{p}) = \log\frac{\textcolor{#2dd4bf}{p}}{1-\textcolor{#2dd4bf}{p}}.
 $$
