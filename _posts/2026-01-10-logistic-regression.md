@@ -6,54 +6,12 @@ tags: [ML, statistics, classification, supervised learning]
 mathjax: true
 ---
 
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({ startOnLoad: true });
-</script>
-
-<pre class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#1e293b', 'primaryTextColor': '#e2e8f0', 'primaryBorderColor': '#60a5fa', 'lineColor': '#60a5fa', 'background': '#0f172a', 'nodeBorder': '#60a5fa', 'clusterBkg': '#162032', 'edgeLabelBackground': '#0f172a', 'fontFamily': 'sans-serif', 'fontSize': '14px'}, 'flowchart': {'useMaxWidth': false, 'padding': 12}}}%%
-flowchart TD
-    A["Motivation and the binary classification goal"] --> B["Setup and notation"]
-    B --> C["The sigmoid and probability interpretation"]
-    C --> D["The score z and log odds"]
-    D --> E["The full model in matrix form"]
-    E --> F["Likelihood and binary cross entropy loss"]
-    F --> G["Gradients of the loss"]
-    G --> H["Gradient descent updates"]
-
-    C --> I["Bridge: From probability to a decision"]
-    C --> J["Bridge: What is a logit"]
-    C --> K["Bridge: Softmax as the multiclass sigmoid"]
-
-    E --> L["Bridge: Wrapping bias into the input matrix"]
-
-    F --> M["Bridge: Measuring entropy as loss"]
-
-    class I,J,K,L,M bridge;
-    class A,B,C,D,E,F,G,H core;
-
-    classDef core fill:#1e293b,stroke:#60a5fa,color:#e2e8f0,stroke-width:2px;
-    classDef bridge fill:#162032,stroke:#f59e0b,color:#fde68a,stroke-width:2px,stroke-dasharray: 6 4;
-</pre>
-
 <style>
 :root {
   --ocre: #60a5fa;
   --ocre60: rgba(96, 165, 250, 0.3);
   --bg-black5: #1e293b;
   --bg-ocre10: #162032;
-}
-
-/* Mermaid diagram container */
-.mermaid {
-  overflow-x: auto;
-  margin: 1.5rem 0;
-}
-.mermaid svg {
-  max-width: none;
-  display: block;
-  margin: 0 auto;
 }
 
 /* Headings */
@@ -110,6 +68,52 @@ details[open] summary {
   border-bottom: 1px solid var(--ocre60);
 }
 </style>
+
+# Content
+<div class="box">
+  <div class="box-title">Roadmap</div>
+
+  <strong>1. Foundations</strong>
+  <ul>
+    <li><a href="#motivation-and-the-binary-classification-goal">Motivation and the binary classification goal</a></li>
+    <li><a href="#setup-and-notation">Setup and notation</a></li>
+  </ul>
+
+  <strong>2. From score to probability</strong>
+  <ul>
+    <li><a href="#the-sigmoid-and-probability-interpretation">The sigmoid and probability interpretation</a></li>
+    <li>Optional bridges
+      <ul>
+        <li><a href="#bridge-from-probability-to-a-decision">From probability to a decision</a></li>
+        <li><a href="#bridge-what-is-a-logit">What is a logit</a></li>
+        <li><a href="#bridge-softmax-as-the-multiclass-sigmoid">Softmax as the multiclass sigmoid</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <strong>3. Building the model</strong>
+  <ul>
+    <li><a href="#the-score-z-and-log-odds">The score z and log odds</a></li>
+    <li><a href="#the-full-model-in-matrix-form">The full model in matrix form</a></li>
+    <li>Optional bridge
+      <ul>
+        <li><a href="#bridge-wrapping-bias-into-the-input-matrix">Wrapping bias into the input matrix</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <strong>4. Learning the parameters</strong>
+  <ul>
+    <li><a href="#likelihood-and-binary-cross-entropy-loss">Likelihood and binary cross entropy loss</a></li>
+    <li>Optional bridge
+      <ul>
+        <li><a href="#bridge-measuring-entropy-as-loss">Measuring entropy as loss</a></li>
+      </ul>
+    </li>
+    <li><a href="#gradients-of-the-loss">Gradients of the loss</a></li>
+    <li><a href="#gradient-descent-updates">Gradient descent updates</a></li>
+  </ul>
+</div>
 
 # Motivation and the binary classification goal
 
