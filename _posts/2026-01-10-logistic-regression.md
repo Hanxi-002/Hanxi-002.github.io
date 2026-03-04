@@ -12,7 +12,7 @@ mathjax: true
 </script>
 
 <pre class="mermaid">
-%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#1e293b', 'primaryTextColor': '#e2e8f0', 'primaryBorderColor': '#60a5fa', 'lineColor': '#60a5fa', 'background': '#0f172a', 'nodeBorder': '#60a5fa', 'clusterBkg': '#162032', 'edgeLabelBackground': '#0f172a', 'fontFamily': 'sans-serif', 'fontSize': '14px'}, 'flowchart': {'useMaxWidth': true, 'padding': 12, 'htmlLabels': false}}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#1e293b', 'primaryTextColor': '#e2e8f0', 'primaryBorderColor': '#60a5fa', 'lineColor': '#60a5fa', 'background': '#0f172a', 'nodeBorder': '#60a5fa', 'clusterBkg': '#162032', 'edgeLabelBackground': '#0f172a', 'fontFamily': 'sans-serif', 'fontSize': '14px'}, 'flowchart': {'useMaxWidth': false, 'padding': 12}}}%%
 flowchart TD
     A["Motivation and the binary classification goal"] --> B["Setup and notation"]
     B --> C["The sigmoid and probability interpretation"]
@@ -51,7 +51,7 @@ flowchart TD
   margin: 1.5rem 0;
 }
 .mermaid svg {
-  max-width: 100%;
+  max-width: none;
   display: block;
   margin: 0 auto;
 }
