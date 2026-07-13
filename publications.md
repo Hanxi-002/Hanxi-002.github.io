@@ -5,6 +5,12 @@ title: Publications & Projects
 You can also find my publications on [Google Scholar](https://scholar.google.com/citations?user=O2h32WkAAAAJ&hl=en).
 Publications are listed in reverse chronological order.
 
+### 2025
+- **Interpretable machine learning coupled to spatial transcriptomics unveils mechanisms of macrophage-driven fibroblast activation in ischemic cardiomyopathy** <br>
+	N Natarajan<sup>*</sup>, <strong>H Xiao</strong><sup>*</sup>, S Haque, MD Cundiff, M Hara, V Sriram, J Das, P Dutta <br>
+  *medRxiv*, <sup>*</sup> equal contribution <br>
+  [Link to Paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC12393634/)
+
 ### 2024
 - **Spatial microniches of IL-2 combine with IL-10 to drive lung migratory TH2 cells in response to inhaled allergen** <br>
 	K He, **H Xiao**,  et al <br>
